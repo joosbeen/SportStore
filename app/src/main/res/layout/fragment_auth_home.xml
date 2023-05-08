@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:layout_margin="16dp"
     tools:context=".ui.fragments.auth.AuthHomeFragment">
 
 
@@ -21,13 +20,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/crea_tu_cuenta" />
+        android:text="@string/crea_tu_cuenta"
+        style="@style/txt_btn_dark_primary"
+        android:background="@drawable/btn_dark_primary"/>
 
     <Button
         android:id="@+id/auth_home_btn_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/iniciar_sesion" />
+        android:text="@string/iniciar_sesion"
+        style="@style/txt_btn_dark_primary"
+        android:background="@drawable/btn_dark_primary" />
 
 </LinearLayout>

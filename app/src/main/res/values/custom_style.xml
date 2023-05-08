@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="txt_btn_dark_primary">
+        <item name="android:textSize">17.5sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="lbl_input">
+        <item name="android:textColor">@color/dark_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17.5sp</item>
+    </style>
+</resources>

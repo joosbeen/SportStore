@@ -1,5 +1,6 @@
 package com.bedu.sportstore.ui.fragments.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +11,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.commit
+import com.bedu.sportstore.MainActivity
 import com.bedu.sportstore.R
+import com.bedu.sportstore.db.DataBase
+import com.bedu.sportstore.db.Usuario
+import com.bedu.sportstore.utileria.Form
+import java.util.*
 
 class SignInFragment : Fragment() {
 
@@ -37,8 +43,6 @@ class SignInFragment : Fragment() {
         btnSigninSubmit.setOnClickListener { onClickSigninSubmit() }
         txtSigninRegistrarse.setOnClickListener { onClickSigninRegister() }
 
-
-
         return view
     }
 
@@ -51,7 +55,30 @@ class SignInFragment : Fragment() {
     }
 
     private fun onClickSigninSubmit() {
-        Toast.makeText(getActivity(), "click submit button", Toast.LENGTH_SHORT).show()
+
+        val correo = edtSigninEmail.text.toString()
+        val contrasena = edtSigninContrasena.text.toString()
+
+        if (Form.isInvalidText(correo) || Form.isInvalidText(contrasena)) {
+            Toast.makeText(activity, "Correo/Contraseña es requerido!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val usuario = DataBase.usuarios.find {
+            it.correo.lowercase() == correo.lowercase() && it.contrasena.lowercase() == contrasena.lowercase()
+        }
+
+        if (usuario == null) {
+            Toast.makeText(activity, "Correo/Contraseña es invalido!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        Toast.makeText(activity, "Bienvenido ${usuario.nombre}!", Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        intent.putExtra("usuario", usuario.toString())
+        startActivity(intent)
+        activity?.finish()
     }
 
 }

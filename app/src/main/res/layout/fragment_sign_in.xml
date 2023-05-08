@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:layout_margin="16dp"
     tools:context=".ui.fragments.auth.SignInFragment">
 
 
@@ -18,6 +17,7 @@
         android:layout_marginBottom="16dp"/>
 
     <TextView
+        style="@style/lbl_input"
         android:text="@string/e_mail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -28,9 +28,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="example@gmail.com"
-        android:inputType="textPersonName" />
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edit_text_primary"/>
 
     <TextView
+        style="@style/lbl_input"
         android:text="@string/contrasena"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -41,14 +43,17 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Contraseña"
-        android:inputType="textPersonName" />
+        android:inputType="textPassword"
+        android:background="@drawable/edit_text_primary" />
 
     <Button
         android:id="@+id/btnSigninSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/iniciar_sesion"/>
+        android:text="@string/iniciar_sesion"
+        style="@style/txt_btn_dark_primary"
+        android:background="@drawable/btn_dark_primary"/>
 
     <TextView
         android:id="@+id/txtSigninRegistrarse"
