@@ -1,4 +1,4 @@
-package org.bedu.splash_activity
+package com.bedu.sportstore
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import android.os.Looper
 import android.view.WindowManager
 import com.bedu.sportstore.MainActivity
 import com.bedu.sportstore.R
+import com.bedu.sportstore.ui.AuthActivity
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,7 @@ class SplashScreen : AppCompatActivity() {
         )
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent= Intent(this, MainActivity::class.java)
+            val intent= Intent(this, AuthActivity::class.java)
             startActivity(intent)
             finish()
         },3000)
