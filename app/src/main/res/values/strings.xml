@@ -8,4 +8,5 @@
     <string name="nombre">Nombre</string>
     <string name="confirmar_contrasena">Confirmar contraseña</string>
     <string name="crear_cuenta">CREAR CUENTA</string>
+    <string name="bienvenida">Bienvenidos</string>
 </resources>
