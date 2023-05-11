@@ -10,5 +10,9 @@
     <string name="nombre">Nombre</string>
     <string name="confirmar_contrasena">Confirmar contraseña</string>
     <string name="crear_cuenta">CREAR CUENTA</string>
+    <string name="hint_numero_tarjeta">Número de tarjeta</string>
+    <string name="subtitle_forma_pago">Complete su compra proporcionando sus datos de pago</string>
+    <string name="hint_cvc">CVC</string>
+    <string name="hint_nombre_titular">Nombre del titular de la tarjeta</string>
 
 </resources>

@@ -12,19 +12,10 @@
         android:name="com.bedu.sportstore.ui.fragments.auth.AuthHomeFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_auth_home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
-    <!--fragment
-        android:id="@+id/authFragment"
-        android:name="com.bedu.sportstore.ui.fragments.auth.AuthHomeFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" /-->
-
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
