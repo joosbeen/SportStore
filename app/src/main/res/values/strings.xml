@@ -10,5 +10,8 @@
     <string name="crear_cuenta">CREAR CUENTA</string>
     <string name="bienvenida">Bienvenidos</string>
     <string name="calzado">CALZADO</string>
-    <string name="novedades">Novedades</string>
+    <string name="novedades">NOVEDADES</string>
+    <string name="title_dos">ROPA DEPORTIVA</string>
+    <string name="descubre">DESCUBRE</string>
+    <string name="arrow">arrow</string>
 </resources>
