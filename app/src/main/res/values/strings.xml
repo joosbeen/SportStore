@@ -15,4 +15,5 @@
     <string name="subtitle_forma_pago">Complete su compra proporcionando sus datos de pago</string>
     <string name="hint_cvc">CVC</string>
     <string name="hint_nombre_titular">Nombre del titular de la tarjeta</string>
+    <string name="himt_expiracion">Expiración</string>
 </resources>

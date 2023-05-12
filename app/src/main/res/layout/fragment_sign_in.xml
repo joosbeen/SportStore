@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="example@gmail.com"
+        android:text="carlos@gmail.com"
         android:inputType="textEmailAddress"
         android:background="@drawable/edit_text_primary"/>
 
@@ -43,6 +44,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Contraseña"
+        android:text="Carlos12"
         android:inputType="textPassword"
         android:background="@drawable/edit_text_primary" />
 

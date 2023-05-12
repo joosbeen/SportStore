@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
     tools:context=".ui.fragments.main.FormaPagoFragment">
 
     <!-- label subtitulo -->
@@ -18,9 +20,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- card -->
-
-    <!-- label subtitulo total -->
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
@@ -28,7 +27,8 @@
         android:orientation="vertical"
         android:theme="@style/Theme.MaterialComponents.Light"
         app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
+        app:cardElevation="4dp"
+        android:layout_margin="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -54,23 +54,26 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingTop="8dp"
-                android:paddingBottom="8dp">
+                android:paddingBottom="8dp"
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/pagoEdtExpiracion"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:background="@drawable/edit_text_primary"
-                    android:hint="@string/hint_numero_tarjeta" />
+                    android:hint="@string/himt_expiracion"
+                    android:layout_weight="1" />
 
                 <EditText
                     android:id="@+id/pagoEdtCVC"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:background="@drawable/edit_text_primary"
-                    android:hint="@string/hint_cvc" />
+                    android:hint="@string/hint_cvc"
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -86,85 +89,89 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+    <!-- datos subtotales -->
     <TextView
         android:id="@+id/textView2"
         style="@style/pago_subtotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:text="Total"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+        android:text="SUBTOTAL"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- label subtitulo total costo -->
     <TextView
         android:id="@+id/textView3"
         style="@style/pago_subtotal_pago"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
         android:text="$170MXN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- label envio -->
+    <!-- datos envio -->
     <TextView
         android:id="@+id/textView4"
         style="@style/pago_envio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
         android:text="ENVIO"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- label envio costo -->
     <TextView
         android:id="@+id/textView5"
         style="@style/pago_envio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:text="$50MXN"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- linea -->
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/dark_primary"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <!-- label total -->
-
-    <!-- label total costo -->
+    <!-- datos total -->
     <TextView
         android:id="@+id/textView6"
         style="@style/pago_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="20dp"
         android:text="TOTAL"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintBottom_toTopOf="@+id/fpBtnPagar"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/textView7"
         style="@style/pago_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
         android:text="$220MXN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintBottom_toTopOf="@+id/fpBtnPagar"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- boton pagar -->
     <Button
-        android:id="@+id/button"
+        android:id="@+id/fpBtnPagar"
         style="@style/txt_btn_dark_primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/btn_dark_primary"
         android:text="PAGAR $ 170 MXN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
