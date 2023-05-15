@@ -16,6 +16,7 @@ import com.bedu.sportstore.R
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.db.Usuario
 import com.bedu.sportstore.utileria.Form
+import com.bedu.sportstore.utileria.UserSession
 import java.util.*
 
 class SignInFragment : Fragment() {
@@ -73,7 +74,7 @@ class SignInFragment : Fragment() {
             return
         }
 
-        Toast.makeText(activity, "Bienvenido ${usuario.nombre}!", Toast.LENGTH_SHORT).show()
+        UserSession.user = usuario
 
         val intent = Intent(requireContext(), MainActivity::class.java)
         intent.putExtra("usuario", usuario.toString())

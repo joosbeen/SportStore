@@ -14,6 +14,7 @@ import com.bedu.sportstore.R
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.db.Usuario
 import com.bedu.sportstore.utileria.Form
+import com.bedu.sportstore.utileria.UserSession
 
 class SignUpFragment : Fragment() {
 
@@ -71,6 +72,8 @@ class SignUpFragment : Fragment() {
 
         val id = (DataBase.usuarios.size + 1L)
         val usuario = Usuario(id, nombre, email, contrasena, "cliente")
+
+        UserSession.user = usuario
 
         val intent = Intent(requireContext(), MainActivity::class.java)
         intent.putExtra("usuario", usuario.toString())
