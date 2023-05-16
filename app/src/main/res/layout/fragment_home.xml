@@ -2,144 +2,21 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:paddingBottom="16dp"
     tools:context=".Home">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listCarories"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="wrap_content"
-            android:layout_height="240dp"
-            android:layout_margin="16dp"
-            card_view:cardCornerRadius="15dp"
-
-            card_view:cardElevation="4dp"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent">
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#494949"
-                android:padding="8dp">
-
-                <TextView
-                    android:id="@+id/textViewTitulo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:padding="10dp"
-                    android:text="calzado"
-                    android:textColor="#ffffff"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
-                    android:layout_centerInParent="true"
-                    android:layout_marginBottom="1dp"
-                    android:background="@drawable/tenis"
-                    android:contentDescription="tenis" />
-
-
-                <TextView
-                    android:id="@+id/textViewDescubre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="16dp"
-                    android:layout_toStartOf="@id/imageViewArrowRight"
-                    android:text="DESCUBRE"
-                    android:textColor="#FFFFFF"
-                    android:textSize="21sp" />
-
-                <ImageView
-                    android:id="@+id/imageViewArrowRight"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/baseline_arrow_forward_24" />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-<!--
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            card_view:cardCornerRadius="15dp"
-            card_view:cardElevation="4dp"
-            android:layout_marginTop="24dp"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/cardView">
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp"
-                android:background="#494949">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ropa"
-                    android:layout_gravity="center"/>
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:padding="10dp"
-                    android:shadowColor="#858585"
-                    android:text="ROPA"
-                    android:textColor="#ffffff"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_toStartOf="@+id/imageViewArrowRightDos"
-                    android:text="DESCUBRE"
-                    android:textColor="#FFFFFF"
-                    android:textSize="21sp" />
-
-                <ImageView
-                    android:id="@+id/imageViewArrowRightDos"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/baseline_arrow_forward_2" />
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>-->
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingVertical="8dp"
+        android:layout_marginBottom="24dp"
+        tools:listitem="@layout/item_categoria_cardview"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </FrameLayout>
