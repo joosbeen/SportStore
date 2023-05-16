@@ -7,11 +7,97 @@
     tools:context=".Home">
 
     <!-- TODO: Update blank fragment layout -->
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:layout_margin="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/baseline_search_24"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        tools:layout_editor_absoluteY="20dp" />
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:layout_marginStart="15dp"
+        android:text="@string/novedades"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        tools:layout_editor_absoluteY="15dp" />
+
+    <androidx.cardview.widget.CardView
+        card_view:cardBackgroundColor="@color/black"
+        card_view:cardCornerRadius="8dp"
+        card_view:cardElevation="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/bienvenida"
-        android:gravity="center"
-        android:textSize="50sp"/>
+        android:layout_height="240dp"
+        android:layout_alignParentTop="@+id/view"
+        android:layout_marginTop="88dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:background="#858585">
+
+            <TextView
+                android:id="@+id/textViewTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:padding="10dp"
+                android:text="@string/calzado"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="1dp"
+                android:background="@drawable/tenis"
+                android:contentDescription="@string/calzado" />
+
+
+            <TextView
+                android:id="@+id/textViewDescubre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="16dp"
+                android:layout_toStartOf="@id/imageViewArrowRight"
+                android:text="@string/descubre"
+                android:textColor="@color/white"
+                android:textSize="21sp" />
+
+            <ImageView
+                android:id="@+id/imageViewArrowRight"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/baseline_arrow_forward_24" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
 
 </FrameLayout>
