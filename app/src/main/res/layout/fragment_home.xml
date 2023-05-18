@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
     tools:context=".Home">
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="textStart"
+        style="@style/menu_fragment_home">
+        <TextView
+            style="@style/menu_fragment_home"
+            android:text="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listCarories"
@@ -15,8 +30,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:paddingVertical="8dp"
-        android:layout_marginBottom="24dp"
         tools:listitem="@layout/item_categoria_cardview"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-</FrameLayout>
+</LinearLayout>

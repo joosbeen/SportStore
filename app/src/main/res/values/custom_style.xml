@@ -40,4 +40,12 @@
         <item name="android:textSize">17.5sp</item>
         <item name="android:textColor">@color/dark_primary</item>
     </style>
+    <style name="menu_fragment_home">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textSize">21.88sp</item>
+        <item name="android:textColor">@color/dark_primary</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingStart">8dp</item>
+    </style>
 </resources>

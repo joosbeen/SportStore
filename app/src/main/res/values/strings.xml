@@ -17,4 +17,5 @@
     <string name="hint_nombre_titular">Nombre del titular de la tarjeta</string>
     <string name="himt_expiracion">Expiración</string>
     <string name="descubre">DESCUBRE</string>
+    <string name="not_item_selected">No se lecciona ninguna vista</string>
 </resources>

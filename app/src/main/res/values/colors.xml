@@ -11,4 +11,5 @@
     <color name="dark_primary">#171717</color>
     <color name="dark_secondary">#8b8b8b</color>
     <color name="dark_bg_li">#F7F7F7</color>
+    <color name="dark_light">#E9E9E9</color>
 </resources>
