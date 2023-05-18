@@ -33,4 +33,5 @@
     <string name="error_msj_eta_expiracion_invalido">Ingrese un expiración válido</string>
     <string name="error_msj_eta_cvc_requerida">Ingrese un CVC válido</string>
     <string name="error_msj_eta_titular_requerida">Ingrese un Nombre del titular válido</string>
+    <string name="compras">Compras</string>
 </resources>

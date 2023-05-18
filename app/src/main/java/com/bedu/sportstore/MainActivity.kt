@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bedu.sportstore.databinding.ActivityMainBinding
 import com.bedu.sportstore.ui.fragments.main.FormaPagoFragment
+import com.bedu.sportstore.ui.fragments.main.PerfilFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(Home())
                 R.id.search -> replaceFragment(Search())
                 R.id.car -> replaceFragment(Car())
-                R.id.settings -> replaceFragment(Settings())
+                R.id.settings -> replaceFragment(PerfilFragment())
                 else -> Toast.makeText(this, getString(R.string.not_item_selected), Toast.LENGTH_SHORT).show()
 
             }
