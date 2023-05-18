@@ -18,4 +18,19 @@
     <string name="himt_expiracion">Expiración</string>
     <string name="descubre">DESCUBRE</string>
     <string name="not_item_selected">No se lecciona ninguna vista</string>
+    <string name="error_msj_correo_contrasena_req">Correo/Contraseña es requerido!</string>
+    <string name="error_msj_contrasena_esp">Contraseña no debe contener espacios!</string>
+    <string name="error_msj_correo_fort">El formato del correo es invalido!</string>
+    <string name="error_msj_correo_contrasena_inv">Correo/Contraseña es invalido!</string>
+    <string name="error_msj_form_incompleto">Debe llenar correctamente todos los campos!</string>
+    <string name="error_msj_nombre_min_caract">Nombre debe contener 3 caracteres minimo!</string>
+    <string name="error_msj_contrasena_min_caract">Contraseña debe contener 5 caracteres minimo!</string>
+    <string name="error_msj_correo_registrado">El correo ya se encuentra registrado, ingrese otro!</string>
+    <string name="error_msj_contrasenas_diferentes">Las contraseñas no coiciden!</string>
+    <string name="error_msj_eta_numero_requerido">Ingrese un número de tarjeta válido</string>
+    <string name="error_msj_eta_numero_invalido">Ingrese los 16 digitos de su tarjeta.</string>
+    <string name="error_msj_eta_cvc_invalido">Ingrese los 3 dígitos</string>
+    <string name="error_msj_eta_expiracion_invalido">Ingrese un expiración válido</string>
+    <string name="error_msj_eta_cvc_requerida">Ingrese un CVC válido</string>
+    <string name="error_msj_eta_titular_requerida">Ingrese un Nombre del titular válido</string>
 </resources>
