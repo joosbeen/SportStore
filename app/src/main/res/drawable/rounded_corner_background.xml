@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- rounded_corner_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF"/> <!-- Color de fondo del elemento de lista -->
+    <corners android:radius="8dp"/> <!-- Radio de las esquinas redondeadas -->
+    <stroke
+        android:color="#B5B2B2"
+        android:width="3dp" />
+    <!-- Color del borde -->
+    <!-- Grosor del borde -->
+</shape>

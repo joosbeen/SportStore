@@ -5,55 +5,39 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bedu.sportstore.databinding.FragmentCarBinding
+import com.bedu.sportstore.db.Favorite
+import com.bedu.sportstore.ui.adapters.FavoriteAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Car.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Car : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var _binding: FragmentCarBinding? = null
+    private val binding get() = _binding!!
+
+    val favoriteList = listOf(
+        Favorite("0000000001", "12/12/12","$200 MXN", "Entregado"),
+        Favorite("0000000002", "11/11/11","$199 MXN", "Pendiente"),
+        Favorite("0000000003", "10/10/10","$198 MXN", "Entregado")
+    )
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Inflate the layout for this fragment
+        initRecycler()
+    }
+    private fun initRecycler(){
+        binding.rvFavorite.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = FavoriteAdapter(favoriteList)
+        binding.rvFavorite.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_car, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Car.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Car().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        _binding = FragmentCarBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }
