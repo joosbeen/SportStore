@@ -38,5 +38,8 @@
     <string name="categoria_calzado">Calzado</string>
     <string name="titulo_producto">TENIS NIKE AIR MAX</string>
     <string name="subtitulo_producto">Para hombre. Original</string>
-    <string name="precio_producto">$2399.00</string>
+    <string name="precio_producto">$2399.00 MXN</string>
+    <string name="titulo_carrito">Carrito de Compras</string>
+    <string name="comprar_carrito">COMPRAR CARRITO</string>
+    <string name="talla_producto">Talla: 25</string>
 </resources>
