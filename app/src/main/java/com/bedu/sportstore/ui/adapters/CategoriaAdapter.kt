@@ -11,11 +11,15 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bedu.sportstore.R
 import com.bedu.sportstore.db.Categoria
+import com.bedu.sportstore.db.Producto
 import kotlin.math.log
 
-class CategoriaAdapter(val categorias: MutableList<Categoria>) :
+class CategoriaAdapter(val categorias: MutableList<Categoria>, val oncategoriaClick: OnCategoriaClickListener) :
     RecyclerView.Adapter<CategoriaAdapter.ViewHolder>() {
 
+    interface OnCategoriaClickListener {
+        fun oncategoriaClick(categoria: Categoria)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater
@@ -31,9 +35,7 @@ class CategoriaAdapter(val categorias: MutableList<Categoria>) :
         val categoria = categorias[position]
         holder.bind(categoria)
         holder.itemView.findViewById<TextView>(R.id.txtCategoryRedirect).setOnClickListener {
-            Toast.makeText(it.context, "Categoria ${categoria.nombre} lista en desarrollo!", Toast.LENGTH_SHORT).show()
-            Log.d("jbenny", "onBindViewHolder: ${categoria.nombre}")
-            // TODO: Falta enlazar Fragment lista de ropa
+            oncategoriaClick.oncategoriaClick(categoria)
         }
     }
 

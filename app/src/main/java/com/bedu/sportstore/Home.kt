@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bedu.sportstore.db.Categoria
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.ui.adapters.CategoriaAdapter
+import com.bedu.sportstore.ui.fragments.main.ProductosCategoriaFragment
 
 
-class Home : Fragment() {
+class Home : Fragment(), CategoriaAdapter.OnCategoriaClickListener {
 
     // Add RecyclerView member
     private lateinit var recyclerView: RecyclerView
@@ -26,8 +30,16 @@ class Home : Fragment() {
         recyclerView = view.findViewById(R.id.listCarories)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(view.getContext())
-        recyclerView.adapter = CategoriaAdapter(DataBase.categorias)
+        recyclerView.adapter = CategoriaAdapter(DataBase.categorias, this@Home)
         return view
     }
 
+    override fun oncategoriaClick(categoria: Categoria) {
+
+        requireActivity().supportFragmentManager.commit {
+            replace(R.id.frame_Layout, ProductosCategoriaFragment.newInstance(categoria))
+            addToBackStack("productosCategoriaFragment")
+        }
+
+    }
 }
