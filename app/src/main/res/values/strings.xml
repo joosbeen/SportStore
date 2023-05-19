@@ -35,4 +35,8 @@
     <string name="error_msj_eta_titular_requerida">Ingrese un Nombre del titular válido</string>
     <string name="categoriaProducto_calzado">Calzado</string>
     <string name="titulo_producto_carrito">Tenis Nike Air</string>
+    <string name="categoria_calzado">Calzado</string>
+    <string name="titulo_producto">TENIS NIKE AIR MAX</string>
+    <string name="subtitulo_producto">Para hombre. Original</string>
+    <string name="precio_producto">$2399.00</string>
 </resources>
