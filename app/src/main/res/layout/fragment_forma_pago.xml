@@ -109,13 +109,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/fpCostoSubtotal"
         style="@style/pago_subtotal_pago"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="$170MXN"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toTopOf="@+id/fpCostoEnvio"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- datos envio -->
@@ -131,14 +131,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/fpCostoEnvio"
         style="@style/pago_envio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:text="$50MXN"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintBottom_toTopOf="@+id/fpCostoTotal"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- linea -->
@@ -149,7 +149,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/fpCostoEnvio" />
 
     <!-- datos total -->
     <TextView
@@ -164,7 +164,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/fpCostoTotal"
         style="@style/pago_total"
         android:layout_marginEnd="8dp"
         android:layout_width="wrap_content"
