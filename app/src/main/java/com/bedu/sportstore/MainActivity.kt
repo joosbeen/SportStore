@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bedu.sportstore.databinding.ActivityMainBinding
+import com.bedu.sportstore.ui.fragments.main.CarritoFragment
 import com.bedu.sportstore.ui.fragments.main.FormaPagoFragment
 import com.bedu.sportstore.ui.fragments.main.HistorialComprasFragment
 import com.bedu.sportstore.ui.fragments.main.PerfilFragment
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.home -> replaceFragment(Home())
                 R.id.search -> replaceFragment(HistorialComprasFragment())
-                R.id.car -> replaceFragment(Car())
+                R.id.car -> replaceFragment(CarritoFragment())
                 R.id.settings -> replaceFragment(PerfilFragment())
                 else -> Toast.makeText(this, getString(R.string.not_item_selected), Toast.LENGTH_SHORT).show()
 

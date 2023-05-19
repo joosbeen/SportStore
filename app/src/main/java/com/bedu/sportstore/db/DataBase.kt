@@ -128,4 +128,10 @@ object DataBase {
         ),
     )
 
+    var carrito = mutableListOf(
+        CarritoProducto(2,2,2),
+        CarritoProducto(5,1,3),
+        CarritoProducto(9,3,2)
+    )
+
 }
