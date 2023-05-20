@@ -33,6 +33,10 @@ class ProductoCategoriaAdapter(
     override fun onBindViewHolder(holder: ProductoCategoriaAdapter.ViewHolder, position: Int) {
         val producto = productos[position]
         holder.bind(producto)
+
+        holder.itemView.setOnClickListener {
+            onProductoClick.onProductoClick(producto)
+        }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
