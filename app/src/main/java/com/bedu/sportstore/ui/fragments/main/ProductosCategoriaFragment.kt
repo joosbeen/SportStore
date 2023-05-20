@@ -1,6 +1,7 @@
 package com.bedu.sportstore.ui.fragments.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
@@ -12,6 +13,7 @@ import com.bedu.sportstore.db.Categoria
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.db.Producto
 import com.bedu.sportstore.ui.adapters.ProductoCategoriaAdapter
+import kotlin.math.log
 
 class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categoria),  ProductoCategoriaAdapter.OnProductoClickListener{
 
@@ -41,6 +43,8 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
 
     override fun onProductoClick(producto: Producto) {
         Toast.makeText(context, "ProductosCategoriaFragment -> onProductoClick", Toast.LENGTH_SHORT).show()
+        Log.i("Entrando en el producto", 1.toString())
+
     }
     companion object {
         @JvmStatic
