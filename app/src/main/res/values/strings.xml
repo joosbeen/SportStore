@@ -34,4 +34,9 @@
     <string name="error_msj_eta_cvc_requerida">Ingrese un CVC válido</string>
     <string name="error_msj_eta_titular_requerida">Ingrese un Nombre del titular válido</string>
     <string name="compras">Compras</string>
+    <string name="folio">FOLIO: </string>
+    <string name="fecha">Fecha: </string>
+    <string name="estado">Estado: </string>
+    <string name="usuario">Usuario</string>
+    <string name="compra_exitosa">Compra exitosa!</string>
 </resources>
