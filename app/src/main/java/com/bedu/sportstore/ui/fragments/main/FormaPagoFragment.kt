@@ -19,6 +19,7 @@ import com.bedu.sportstore.db.Usuario
 import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.Form
 import com.bedu.sportstore.utileria.UserSession
+import com.bedu.sportstore.utileria.UtilFragment
 import com.google.android.material.snackbar.Snackbar
 import java.util.Date
 
@@ -31,7 +32,15 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFormaPagoBinding.bind(view)
-        ToolbarBasic().show((activity as AppCompatActivity?)!!, "TARJETA", false)
+        binding.toolBarFragment.title = getString(R.string.title_detalles_del_pago)
+        binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
+        binding.toolBarFragment.setNavigationOnClickListener {
+
+            if (it.id == -1) UtilFragment().replaceFragmetnMain(
+                requireActivity().supportFragmentManager,
+                CarritoFragment()
+            )
+        }
 
         binding.fpBtnPagar.setOnClickListener { validarDatosTarjeta() }
 
