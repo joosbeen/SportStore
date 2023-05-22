@@ -19,6 +19,7 @@ import com.bedu.sportstore.db.Categoria
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.db.Producto
 import com.bedu.sportstore.ui.adapters.ProductoCategoriaAdapter
+import com.bedu.sportstore.ui.frag.ProductDetailFragment
 import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.UtilFragment
 
@@ -62,14 +63,12 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
     }
 
     override fun onProductoClick(producto: Producto) {
-        Toast.makeText(context, "ProductosCategoriaFragment -> onProductoClick", Toast.LENGTH_SHORT).show()
         Log.i("Detail", producto.toString())
         val detailFragment = ProductDetailFragment()
         parentFragmentManager.commit {
             replace(R.id.frame_Layout, ProductDetailFragment.newInstance(producto))
         }
-        Toast.makeText(context, "ProductosCategoriaFragment -> onProductoClick", Toast.LENGTH_SHORT)
-            .show()
+
     }
 
     companion object {

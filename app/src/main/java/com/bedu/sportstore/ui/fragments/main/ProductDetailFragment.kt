@@ -1,4 +1,7 @@
-package com.bedu.sportstore.ui.fragments.main
+package com.bedu.sportstore.ui.frag
+
+import com.bedu.sportstore.ui.fragments.main.FormaPagoFragment
+import java.util.Date
 
 import android.os.Bundle
 import android.util.Log
@@ -72,7 +75,8 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
         Toast.makeText(context, "Se añadio el producto", Toast.LENGTH_SHORT)
             .show()
         Log.i("Añadir","Carrito "+ producto)
-
+        val idNew=UserSession.user?.id
+        //DataBase.carrito.add(Date().time,producto.id,UserSession.user?.id ?:0)
 
     }
     private fun finalizarCompra(){
@@ -88,3 +92,4 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
     }
 
 }
+
