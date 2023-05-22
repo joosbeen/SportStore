@@ -11,28 +11,27 @@ import com.bedu.sportstore.R
 import com.bedu.sportstore.db.Producto
 import com.bumptech.glide.Glide
 
-class ProductoCategoriaAdapter(
-    private val productos: List<Producto>,
+class ProductDetailAdapter(
+    private val producto: Producto,
     private val onProductoClick: OnProductoClickListener
-) : RecyclerView.Adapter<ProductoCategoriaAdapter.ViewHolder>()  {
+) : RecyclerView.Adapter<ProductDetailAdapter.ViewHolder>() {
+
 
     interface
     OnProductoClickListener {
         fun onProductoClick(producto: Producto)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoCategoriaAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductDetailAdapter.ViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_producto_categoria, parent, false)
 
-        return ViewHolder(view)
+        return ProductDetailAdapter.ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = productos.size
-
-    override fun onBindViewHolder(holder: ProductoCategoriaAdapter.ViewHolder, position: Int) {
-        val producto = productos[position]
+    override fun onBindViewHolder(holder: ProductDetailAdapter.ViewHolder, position: Int) {
+        val producto = producto
         holder.bind(producto)
 
         holder.itemView.setOnClickListener {
@@ -40,12 +39,15 @@ class ProductoCategoriaAdapter(
         }
     }
 
+    override fun getItemCount(): Int = 1
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val imgProducto: ImageView = view.findViewById(R.id.imgProducto)
         private val nombreProducto: TextView = view.findViewById(R.id.nombreProducto)
         private val precioProducto: TextView = view.findViewById(R.id.precioProducto)
         private val descripcionProducto: TextView = view.findViewById(R.id.descripcionProducto)
+        private val descripcionLargaProducto: TextView = view.findViewById(R.id.descripcionLargaProducto)
         private val context: Context = view.context
 
         fun bind(producto: Producto) {
@@ -57,6 +59,6 @@ class ProductoCategoriaAdapter(
             Glide.with(context).load(producto.imagen).into(imgProducto);
 
         }
-
     }
+
 }

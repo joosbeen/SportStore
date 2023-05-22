@@ -33,7 +33,7 @@ object DataBase {
     // Lista de productos
     var productos = mutableListOf(
         Producto(
-            1, "Sandalias de Tacón Frida", "Kollection para Mujer", 499f, 1,
+            1, "Sandalias de Tacón Frida", "Kollection para Mujer", "Tacones color rosa" , 499f, 1,
             "https://cdn1.coppel.com/images/catalog/pr/8500602-1.jpg?iresize=width:300,height:240",
             mutableListOf<String>(
                 "https://cdn1.coppel.com/images/catalog/pr/8500602-1.jpg",
@@ -43,7 +43,7 @@ object DataBase {
             )
         ),
         Producto(
-            2, "Tenis Casuales 18", "Forever para Mujer", 299f, 1,
+            2, "Tenis Casuales 18", "Forever para Mujer", "Tenis de piel color blanco", 299f, 1,
             "https://cdn1.coppel.com/images/catalog/pr/8199752-1.jpg",
             mutableListOf(
                 "https://cdn1.coppel.com/images/catalog/pr/8199752-1.jpg",
@@ -56,6 +56,7 @@ object DataBase {
             3,
             "Tenis Nike Air Max Alpha",
             "Trainer 5 para Hombr",
+            "Tenis con la ultima tecnologia para reducir el impacto en la planta del pie",
             1479f,
             1,
             "https://cdn1.coppel.com/images/catalog/pr/8426492-1.jpg",
@@ -67,7 +68,9 @@ object DataBase {
             )
         ),
         Producto(
-            4, "Tenis Nike Giannis Inmortality", "para Hombre", 1689f, 1,
+            4, "Tenis Nike Giannis Inmortality", "para Hombre",
+            "Tenis color gris con tecnologia para dar tu maximo potencial en tu deporte favorito",
+            1689f, 1,
             "https://cdn1.coppel.com/images/catalog/pr/8425812-1.jpg",
             mutableListOf(
                 "https://cdn1.coppel.com/images/catalog/pr/8425812-1.jpg",
@@ -77,7 +80,9 @@ object DataBase {
             )
         ),
         Producto(
-            5, "Sandalias de Tacón Frida", "Kollection para Mujer", 499f, 1,
+            5, "Tenis Sportline para Mujer", "Collection para Mujer",
+            "Sal a correr sin perder el estilo con estos atractivos tenis Sportline, perfectos para motivarte durante tu rutina.",
+            499f, 1,
             "https://cdn1.coppel.com/images/catalog/pr/8209642-1.jpg",
             mutableListOf(
                 "https://cdn1.coppel.com/images/catalog/pr/8209642-1.jpg",
@@ -87,7 +92,9 @@ object DataBase {
             )
         ),
         Producto(
-            6, "Botines Baby Colors", "para Bebé Niño", 179f, 1,
+            6, "Botines Baby Colors", "para Bebé Niño",
+            "Calza a tu pequeño con estos elegantes botines Baby Colors, con los que se verá muy galán y moderno.",
+            179f, 1,
             "https://cdn1.coppel.com/images/catalog/pr/8263182-1.jpg",
             mutableListOf(
                 "https://cdn1.coppel.com/images/catalog/pr/8263182-1.jpg",
@@ -97,7 +104,8 @@ object DataBase {
             )
         ),
         Producto(
-            7, "Playera de Entrenamiento Nike", "para Mujer", 399f, 2,
+            7, "Playera de Entrenamiento Nike", "para Mujer", "Todo el estilo con esta playera con última técnologia",
+            399f, 2,
             "https://cdn1.coppel.com/images/catalog/pr/3597592-2.jpg",
             mutableListOf(
                 "https://cdn1.coppel.com/images/catalog/pr/3597592-2.jpg",
@@ -107,7 +115,9 @@ object DataBase {
             )
         ),
         Producto(
-            8, "Pantalón de Entrenamiento Nike Sportswear Club", "para Mujer", 719f, 2,
+            8, "Pantalón de Entrenamiento Nike Sportswear Club", "para Mujer",
+            "Es una prenda diseñada en color negro con el estampado del logo de la marca al frente. Está fabricada a base de 80% algodón y 20% poliéster, por lo que es muy cómoda. Cuenta con cordón en cintura para un ajuste perfecto.",
+            719f, 2,
             "https://cdn1.coppel.com/images/catalog/pr/3597412-1.jpg",
             mutableListOf(
                 "https://cdn1.coppel.com/images/catalog/pr/3597412-1.jpg",
@@ -117,7 +127,9 @@ object DataBase {
             )
         ),
         Producto(
-            9, "Sudadera de Entrenamiento Reebok con Capucha", "para Mujer", 729f, 2,
+            9, "Sudadera de Entrenamiento Reebok con Capucha", "para Mujer",
+            "Mantente protegida de las bajas temperaturas con esta increíble sudadera que tiene la marca Reebok.",
+            729f, 2,
             "https://cdn1.coppel.com/images/catalog/pr/3587782-1.jpg",
             mutableListOf(
                 "https://cdn1.coppel.com/images/catalog/pr/3587782-1.jpg",

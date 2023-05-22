@@ -5,11 +5,15 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.get
+import androidx.fragment.app.commit
+import androidx.fragment.app.setFragmentResult
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.Home
 import com.bedu.sportstore.R
 import com.bedu.sportstore.Settings
+import com.bedu.sportstore.databinding.FragmentDetailProductBinding
 import com.bedu.sportstore.databinding.FragmentProductosCategoriaBinding
 import com.bedu.sportstore.db.Categoria
 import com.bedu.sportstore.db.DataBase
@@ -58,6 +62,12 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
     }
 
     override fun onProductoClick(producto: Producto) {
+        Toast.makeText(context, "ProductosCategoriaFragment -> onProductoClick", Toast.LENGTH_SHORT).show()
+        Log.i("Detail", producto.toString())
+        val detailFragment = ProductDetailFragment()
+        parentFragmentManager.commit {
+            replace(R.id.frame_Layout, ProductDetailFragment.newInstance(producto))
+        }
         Toast.makeText(context, "ProductosCategoriaFragment -> onProductoClick", Toast.LENGTH_SHORT)
             .show()
     }

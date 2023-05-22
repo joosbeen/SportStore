@@ -66,4 +66,14 @@
         <item name="paddingEnd">8dp</item>
         <item name="paddingStart">8dp</item>
     </style>
+    <style name="boton_anadir_carrito" >
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorOnSecondary">@color/black</item>
+    </style>
+    <style name="boton_finalizar_compra" >
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorOnSecondary">@color/black</item>
+    </style>
 </resources>

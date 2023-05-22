@@ -37,6 +37,7 @@ class CategoriaAdapter(val categorias: MutableList<Categoria>, val oncategoriaCl
         holder.itemView.findViewById<TextView>(R.id.txtCategoryRedirect).setOnClickListener {
             oncategoriaClick.oncategoriaClick(categoria)
         }
+
     }
 
 
