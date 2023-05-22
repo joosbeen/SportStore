@@ -17,6 +17,7 @@ import com.bedu.sportstore.ui.adapters.ProductDetailAdapter
 import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.UserSession
 import com.bumptech.glide.Glide
+import java.util.*
 
 class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
     ProductDetailAdapter.OnProductoClickListener {
@@ -69,11 +70,13 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
     }
 
     private fun annadirCarrito(producto: Producto){
-        Toast.makeText(context, "Se añadio el producto", Toast.LENGTH_SHORT)
-            .show()
-        Log.i("Añadir","Carrito "+ producto)
-
-
+        DataBase.carrito.add(
+            CarritoProducto(
+                Date().time,
+                producto.id,
+                UserSession.user?.id ?: 0
+            )
+        )
     }
     private fun finalizarCompra(){
         requireActivity().supportFragmentManager.commit {

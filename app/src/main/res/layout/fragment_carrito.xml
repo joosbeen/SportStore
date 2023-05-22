@@ -21,10 +21,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRVContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="443dp"
         android:clipToPadding="false"
-        android:paddingVertical="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBarFragment"
@@ -32,12 +32,13 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_margin="8dp"
-        android:padding="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/dark_light"
+        android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@+id/cartBtnFinalizarCompra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
