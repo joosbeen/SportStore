@@ -12,4 +12,6 @@ class ToolbarBasic {
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(backButton)
         return toolbar
     }
+
+
 }

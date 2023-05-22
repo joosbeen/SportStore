@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentDetailProductBinding
@@ -45,6 +46,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
         binding.descripcionProducto.text = productoSeleccionado[0].descripcion
         binding.precioProducto.text ="$ ${productoSeleccionado[0].precio.toString()}"
         binding.descripcionLargaProducto.text = productoSeleccionado[0].descripcionLarga
+        binding.buttonFinalizarCompra.setOnClickListener{finalizarCompra()}
     }
 
     override fun onDestroyView() {
@@ -60,6 +62,16 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
                     putString("nombreCategoria", producto.nombre)
                 }
             }
+    }
+
+    private fun annadirCarrito(){
+
+    }
+    private fun finalizarCompra(){
+        requireActivity().supportFragmentManager.commit {
+            replace(R.id.frame_Layout, FormaPagoFragment())
+            addToBackStack("formaPagoFragment")
+        }
     }
 
     override fun onProductoClick(producto: Producto) {

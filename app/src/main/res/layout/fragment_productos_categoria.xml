@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     tools:context=".ui.fragments.main.ProductosCategoriaFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarFragment"
+        android:background="@color/dark_primary"
+        app:titleTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title=""
+        app:theme="@style/ToolbarTheme" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductosCategoria"
@@ -14,8 +23,9 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:paddingVertical="8dp"
+        android:paddingHorizontal="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_producto_categoria" />
 
 
-</FrameLayout>
+</LinearLayout>
