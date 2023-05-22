@@ -47,6 +47,7 @@ class ProductDetailAdapter(
         private val nombreProducto: TextView = view.findViewById(R.id.nombreProducto)
         private val precioProducto: TextView = view.findViewById(R.id.precioProducto)
         private val descripcionProducto: TextView = view.findViewById(R.id.descripcionProducto)
+        private val descripcionLargaProducto: TextView = view.findViewById(R.id.descripcionLargaProducto)
         private val context: Context = view.context
 
         fun bind(producto: Producto) {

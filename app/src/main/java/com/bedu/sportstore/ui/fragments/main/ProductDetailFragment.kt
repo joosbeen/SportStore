@@ -12,6 +12,7 @@ import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.db.Producto
 import com.bedu.sportstore.ui.adapters.ProductDetailAdapter
 import com.bedu.sportstore.ui.toolbar.ToolbarBasic
+import com.bedu.sportstore.utileria.UserSession
 import com.bumptech.glide.Glide
 
 class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
@@ -23,6 +24,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
             idProducto = it.getString("idCategoria")
             nombreProducto = it.getString("nombreCategoria")
@@ -42,6 +44,11 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
         binding.nombreProducto.text = productoSeleccionado[0].nombre
         binding.descripcionProducto.text = productoSeleccionado[0].descripcion
         binding.precioProducto.text ="$ ${productoSeleccionado[0].precio.toString()}"
+        binding.descripcionLargaProducto.text = productoSeleccionado[0].descripcionLarga
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 
     companion object {
