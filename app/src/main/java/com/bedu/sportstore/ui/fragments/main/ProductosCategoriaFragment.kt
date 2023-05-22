@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.get
+import androidx.fragment.app.commit
+import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.R
 import com.bedu.sportstore.Settings
@@ -20,7 +22,6 @@ import kotlin.math.log
 class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categoria),  ProductoCategoriaAdapter.OnProductoClickListener{
 
     private lateinit var binding: FragmentProductosCategoriaBinding
-    private lateinit var bindingProduct : FragmentDetailProductBinding
     private var idCategoria: String? = null
     private var nombreCategoria: String? = null
 
@@ -41,12 +42,16 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
         binding.rvProductosCategoria.setHasFixedSize(true)
         binding.rvProductosCategoria.layoutManager = LinearLayoutManager(view.getContext())
         binding.rvProductosCategoria.adapter = ProductoCategoriaAdapter(productos, this@ProductosCategoriaFragment)
-        System.out.println("Binding ___---->> " + binding.rvProductosCategoria.adapter)
+
     }
 
     override fun onProductoClick(producto: Producto) {
         Toast.makeText(context, "ProductosCategoriaFragment -> onProductoClick", Toast.LENGTH_SHORT).show()
-
+        Log.i("Detail", producto.toString())
+        val detailFragment = ProductDetailFragment()
+        parentFragmentManager.commit {
+            replace(R.id.frame_Layout, ProductDetailFragment.newInstance(producto))
+        }
     }
     companion object {
         @JvmStatic

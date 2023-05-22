@@ -42,4 +42,5 @@ class Home : Fragment(), CategoriaAdapter.OnCategoriaClickListener {
         }
 
     }
+
 }
