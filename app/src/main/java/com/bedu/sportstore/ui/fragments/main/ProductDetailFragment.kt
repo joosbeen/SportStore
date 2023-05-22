@@ -1,13 +1,14 @@
-package com.bedu.sportstore.ui.fragments.main
+package com.bedu.sportstore.ui.frag
+
+import com.bedu.sportstore.ui.fragments.main.FormaPagoFragment
+import java.util.Date
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentDetailProductBinding
 import com.bedu.sportstore.db.CarritoProducto
@@ -17,7 +18,7 @@ import com.bedu.sportstore.ui.adapters.ProductDetailAdapter
 import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.UserSession
 import com.bumptech.glide.Glide
-import java.util.*
+import com.google.android.material.snackbar.Snackbar
 
 class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
     ProductDetailAdapter.OnProductoClickListener {
@@ -77,6 +78,12 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
                 UserSession.user?.id ?: 0
             )
         )
+        view?.let {
+            Snackbar.make(
+                it,
+                "Se agrego al carrito", Snackbar.LENGTH_SHORT
+            ).show()
+        }
     }
     private fun finalizarCompra(){
         requireActivity().supportFragmentManager.commit {
@@ -91,3 +98,4 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
     }
 
 }
+
