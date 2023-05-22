@@ -6,13 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.main.CarritoFragment">
 
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/action_bar_toolbar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/ToolbarTheme"
+        app:title=""
+        app:titleTextColor="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRVContent"
@@ -23,7 +27,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintTop_toBottomOf="@+id/toolBarFragment"
         tools:listitem="@layout/item_carrito" />
 
 
@@ -74,6 +78,8 @@
         android:text="FINALIZAR COMPRA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/txt_btn_dark_primary"
+        android:background="@drawable/btn_dark_primary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bedu.sportstore.Home
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentCarBinding
 import com.bedu.sportstore.databinding.FragmentCarritoBinding
@@ -18,6 +19,7 @@ import com.bedu.sportstore.ui.adapters.CarritoAdapter
 import com.bedu.sportstore.ui.adapters.ProductoCategoriaAdapter
 import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.UserSession
+import com.bedu.sportstore.utileria.UtilFragment
 
 class CarritoFragment : Fragment(R.layout.fragment_carrito),
     CarritoAdapter.OnCartProductoClickListener {
@@ -36,12 +38,15 @@ class CarritoFragment : Fragment(R.layout.fragment_carrito),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCarritoBinding.bind(view)
-
-
-        ToolbarBasic().show((activity as AppCompatActivity?)!!, "CARRITO DE COMPRA", false)
-
+        binding.toolBarFragment.title = getString(R.string.title_carrito_de_compra)
+        /*binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
+        binding.toolBarFragment.setNavigationOnClickListener {
+            if (it.id == -1) UtilFragment().replaceFragmetnMain(
+                requireActivity().supportFragmentManager,
+                Home()
+            )
+        }*/
         loadAdapter()
-
     }
 
     private fun loadAdapter() {

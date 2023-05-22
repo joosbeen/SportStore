@@ -9,18 +9,14 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView2"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarFragment"
+        android:background="@color/dark_primary"
+        app:titleTextColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="textStart"
-        style="@style/menu_fragment_home">
-        <TextView
-            style="@style/menu_fragment_home"
-            android:text="@string/app_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:title="@string/title_novedades"
+        app:theme="@style/ToolbarTheme" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listCarories"

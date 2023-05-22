@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.main.FormaPagoFragment">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/action_bar_toolbar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <!-- label subtitulo -->
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/ToolbarTheme"
+        app:title=""
+        app:titleTextColor="@color/white" />
+
     <TextView
         android:id="@+id/pagoTxtSubtitulo"
         style="@style/lbl_subtitle"
@@ -21,7 +26,7 @@
         android:text="@string/subtitle_forma_pago"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/toolBarFragment" />
 
     <!-- card -->
     <com.google.android.material.card.MaterialCardView
