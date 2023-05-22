@@ -3,12 +3,14 @@ package com.bedu.sportstore.ui.fragments.main
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentDetailProductBinding
+import com.bedu.sportstore.db.CarritoProducto
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.db.Producto
 import com.bedu.sportstore.ui.adapters.ProductDetailAdapter
@@ -22,6 +24,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
     private var idProducto: String? = null
     private var nombreProducto: String? = null
     private lateinit var binding : FragmentDetailProductBinding
+    private var nuevoElementoCarrito:CarritoProducto? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +50,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
         binding.precioProducto.text ="$ ${productoSeleccionado[0].precio.toString()}"
         binding.descripcionLargaProducto.text = productoSeleccionado[0].descripcionLarga
         binding.buttonFinalizarCompra.setOnClickListener{finalizarCompra()}
+        binding.buttonAnadirCarrito.setOnClickListener{annadirCarrito(productoSeleccionado[0])}
     }
 
     override fun onDestroyView() {
@@ -64,7 +68,11 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
             }
     }
 
-    private fun annadirCarrito(){
+    private fun annadirCarrito(producto: Producto){
+        Toast.makeText(context, "Se añadio el producto", Toast.LENGTH_SHORT)
+            .show()
+        Log.i("Añadir","Carrito "+ producto)
+
 
     }
     private fun finalizarCompra(){
@@ -76,6 +84,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
 
     override fun onProductoClick(producto: Producto) {
         TODO("Not yet implemented")
+        annadirCarrito(producto)
     }
 
 }

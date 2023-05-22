@@ -3,7 +3,7 @@ package com.bedu.sportstore.db
 import com.bedu.sportstore.utileria.UserSession
 import java.util.Date
 
-data class CarritoProducto(val id: Long, val productoId: Int, val usuarioId: Long)
+data class CarritoProducto(var id: Long, val productoId: Int, val usuarioId: Long)
 
 fun CarritoProducto.cart(): List<CarritoProducto> {
     val carrito = DataBase.carrito.filter { it.usuarioId.toLong() == UserSession.user?.id }

@@ -5,13 +5,10 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
-<<<<<<< HEAD
 import androidx.core.view.get
 import androidx.fragment.app.commit
 import androidx.fragment.app.setFragmentResult
-=======
 import androidx.appcompat.app.AppCompatActivity
->>>>>>> 096aae082334ae8bd77e66635127b9f2ac66807b
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.Home
 import com.bedu.sportstore.R
@@ -22,12 +19,8 @@ import com.bedu.sportstore.db.Categoria
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.db.Producto
 import com.bedu.sportstore.ui.adapters.ProductoCategoriaAdapter
-<<<<<<< HEAD
-import kotlin.math.log
-=======
 import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.UtilFragment
->>>>>>> 096aae082334ae8bd77e66635127b9f2ac66807b
 
 class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categoria),
     ProductoCategoriaAdapter.OnProductoClickListener {
@@ -69,17 +62,14 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
     }
 
     override fun onProductoClick(producto: Producto) {
-<<<<<<< HEAD
         Toast.makeText(context, "ProductosCategoriaFragment -> onProductoClick", Toast.LENGTH_SHORT).show()
         Log.i("Detail", producto.toString())
         val detailFragment = ProductDetailFragment()
         parentFragmentManager.commit {
             replace(R.id.frame_Layout, ProductDetailFragment.newInstance(producto))
         }
-=======
         Toast.makeText(context, "ProductosCategoriaFragment -> onProductoClick", Toast.LENGTH_SHORT)
             .show()
->>>>>>> 096aae082334ae8bd77e66635127b9f2ac66807b
     }
 
     companion object {
