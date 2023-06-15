@@ -10,7 +10,7 @@
 - Blanca Estela Sotelo de la Cruz / blancasotelo.rfm@gmail.com
 - Osman Esquivel Gonzalez / Osmanesquivel@gmail.com
 
-####Temas
+#### Temas
 
 1. Animaciones y Transiciones
 2. Networking

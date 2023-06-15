@@ -9,38 +9,31 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
+import androidx.navigation.fragment.findNavController
 import com.bedu.sportstore.R
+import com.bedu.sportstore.databinding.FragmentAuthHomeBinding
 
 
-class AuthHomeFragment : Fragment() {
+class AuthHomeFragment : Fragment(R.layout.fragment_auth_home) {
 
-    private lateinit var auth_home_btn_signin: Button
-    private lateinit var auth_home_btn_signup: Button
+    private lateinit var binding: FragmentAuthHomeBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentAuthHomeBinding.bind(view)
 
-        val view = inflater.inflate(R.layout.fragment_auth_home, container, false)
+        binding.authHomeBtnSignin.setOnClickListener { onClickChangeFragment(it.id) }
+        binding.authHomeBtnSignup.setOnClickListener { onClickChangeFragment(it.id) }
 
-        auth_home_btn_signin = view.findViewById(R.id.auth_home_btn_signin)
-        auth_home_btn_signup = view.findViewById(R.id.auth_home_btn_signup)
-
-        auth_home_btn_signin.setOnClickListener { onClickChangeFragment(it.id) }
-        auth_home_btn_signup.setOnClickListener { onClickChangeFragment(it.id) }
-
-        return view
     }
 
     private fun onClickChangeFragment(id: Int) {
 
-        val fragment = if (id == auth_home_btn_signin.id) SignInFragment() else SignUpFragment()
+        val action =
+            if (id == binding.authHomeBtnSignin.id) R.id.action_authHomeFragment_to_signInFragment
+            else R.id.action_authHomeFragment_to_signUpFragment
+        findNavController().navigate(action)
 
-        requireActivity().supportFragmentManager.commit {
-            replace(R.id.authFragmentContainer, fragment)
-            addToBackStack("authHomeFragment")
-        }
     }
 
 }

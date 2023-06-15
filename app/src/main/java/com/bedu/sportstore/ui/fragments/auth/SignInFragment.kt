@@ -5,15 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
+import androidx.navigation.fragment.findNavController
 import com.bedu.sportstore.MainActivity
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentSignInBinding
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.utileria.Form
 import com.bedu.sportstore.utileria.UserSession
-import java.util.*
-
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
@@ -28,11 +26,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     }
 
     private fun onClickSigninRegister() {
-        //Toast.makeText(getActivity(), "click register option", Toast.LENGTH_SHORT).show()
-        requireActivity().supportFragmentManager.commit {
-            replace(R.id.authFragmentContainer, SignUpFragment())
-            addToBackStack("authHomeFragment")
-        }
+        findNavController().navigate(R.id.action_authHomeFragment_to_signUpFragment)
     }
 
     private fun onClickSigninSubmit() {

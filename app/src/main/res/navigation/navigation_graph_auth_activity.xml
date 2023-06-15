@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph_auth_activity"
+    app:startDestination="@id/authHomeFragment">
+
+    <fragment
+        android:id="@+id/authHomeFragment"
+        android:name="com.bedu.sportstore.ui.fragments.auth.AuthHomeFragment"
+        android:label="fragment_auth_home"
+        tools:layout="@layout/fragment_auth_home" >
+        <action
+            android:id="@+id/action_authHomeFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_authHomeFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.bedu.sportstore.ui.fragments.auth.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.bedu.sportstore.ui.fragments.auth.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
+</navigation>
