@@ -12,16 +12,26 @@
         tools:layout="@layout/fragment_auth_home" >
         <action
             android:id="@+id/action_authHomeFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/from_in_to_the_right"
+            app:exitAnim="@anim/from_in_left_out"
+            app:popEnterAnim="@anim/from_out_to_the_left"
+            app:popExitAnim="@anim/from_out_to_the_right" />
         <action
             android:id="@+id/action_authHomeFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/translate_left_side"
+            app:exitAnim="@anim/translate_right_side" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.bedu.sportstore.ui.fragments.auth.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.bedu.sportstore.ui.fragments.auth.SignUpFragment"

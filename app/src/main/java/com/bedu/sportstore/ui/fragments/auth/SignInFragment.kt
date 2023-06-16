@@ -26,7 +26,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     }
 
     private fun onClickSigninRegister() {
-        findNavController().navigate(R.id.action_authHomeFragment_to_signUpFragment)
+        findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
     }
 
     private fun onClickSigninSubmit() {
