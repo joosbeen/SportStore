@@ -20,8 +20,10 @@
         <action
             android:id="@+id/action_authHomeFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
-            app:enterAnim="@anim/translate_left_side"
-            app:exitAnim="@anim/translate_right_side" />
+            app:enterAnim="@anim/from_in_to_the_right"
+            app:exitAnim="@anim/from_in_left_out"
+            app:popEnterAnim="@anim/from_out_to_the_left"
+            app:popExitAnim="@anim/from_out_to_the_right" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -30,7 +32,11 @@
         tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/from_in_to_the_right"
+            app:exitAnim="@anim/from_in_left_out"
+            app:popEnterAnim="@anim/from_out_to_the_left"
+            app:popExitAnim="@anim/from_out_to_the_right" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
