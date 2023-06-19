@@ -1,18 +1,13 @@
-package com.bedu.sportstore.ui.adapters
+package com.bedu.sportstore.ui.main.home.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bedu.sportstore.R
 import com.bedu.sportstore.db.Categoria
-import com.bedu.sportstore.db.Producto
-import kotlin.math.log
 
 class CategoriaAdapter(val categorias: MutableList<Categoria>, val oncategoriaClick: OnCategoriaClickListener) :
     RecyclerView.Adapter<CategoriaAdapter.ViewHolder>() {

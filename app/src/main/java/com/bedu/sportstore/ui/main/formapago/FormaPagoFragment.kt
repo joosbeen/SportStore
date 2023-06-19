@@ -1,22 +1,14 @@
 package com.bedu.sportstore.ui.fragments.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.bedu.sportstore.Home
-import com.bedu.sportstore.MainActivity
+import com.bedu.sportstore.ui.main.home.HomeFragment
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentFormaPagoBinding
 import com.bedu.sportstore.db.CarritoProducto
 import com.bedu.sportstore.db.Compra
 import com.bedu.sportstore.db.DataBase
-import com.bedu.sportstore.db.Usuario
-import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.Form
 import com.bedu.sportstore.utileria.UserSession
 import com.bedu.sportstore.utileria.UtilFragment
@@ -129,7 +121,7 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
         // Ir al fragment home
         val fragmentManager = activity?.supportFragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.frame_Layout, Home())
+        fragmentTransaction?.replace(R.id.frame_Layout, HomeFragment())
         fragmentTransaction?.commit()
 
     }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ui.fragments.auth.SignInFragment">
+    tools:context=".ui.auth.SignInFragment">
 
 
     <ImageView

@@ -1,4 +1,4 @@
-package com.bedu.sportstore.ui.fragments.auth
+package com.bedu.sportstore.ui.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater

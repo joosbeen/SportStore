@@ -1,11 +1,11 @@
-package com.bedu.sportstore.ui.fragments.auth
+package com.bedu.sportstore.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
-import com.bedu.sportstore.MainActivity
+import com.bedu.sportstore.ui.MainActivity
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentSignUpBinding
 import com.bedu.sportstore.db.DataBase

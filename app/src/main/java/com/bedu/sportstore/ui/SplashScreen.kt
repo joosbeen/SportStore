@@ -1,4 +1,4 @@
-package com.bedu.sportstore
+package com.bedu.sportstore.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
-import com.bedu.sportstore.MainActivity
 import com.bedu.sportstore.R
-import com.bedu.sportstore.ui.AuthActivity
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

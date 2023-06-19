@@ -1,10 +1,8 @@
-package com.bedu.sportstore.ui.fragments.main
+package com.bedu.sportstore.ui.main.perfil
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentPerfilBinding
 import com.bedu.sportstore.db.DataBase

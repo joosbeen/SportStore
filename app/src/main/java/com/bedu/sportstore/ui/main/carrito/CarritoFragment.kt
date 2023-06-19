@@ -1,25 +1,16 @@
 package com.bedu.sportstore.ui.fragments.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bedu.sportstore.Home
 import com.bedu.sportstore.R
-import com.bedu.sportstore.databinding.FragmentCarBinding
 import com.bedu.sportstore.databinding.FragmentCarritoBinding
 import com.bedu.sportstore.db.CarritoProducto
 import com.bedu.sportstore.db.DataBase
-import com.bedu.sportstore.db.cart
 import com.bedu.sportstore.ui.adapters.CarritoAdapter
-import com.bedu.sportstore.ui.adapters.ProductoCategoriaAdapter
-import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.UserSession
-import com.bedu.sportstore.utileria.UtilFragment
 
 class CarritoFragment : Fragment(R.layout.fragment_carrito),
     CarritoAdapter.OnCartProductoClickListener {

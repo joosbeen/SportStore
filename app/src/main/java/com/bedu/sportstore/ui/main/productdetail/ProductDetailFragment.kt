@@ -1,4 +1,4 @@
-package com.bedu.sportstore.ui.frag
+package com.bedu.sportstore.ui.main.productdetail
 
 import com.bedu.sportstore.ui.fragments.main.FormaPagoFragment
 import java.util.Date
@@ -14,7 +14,7 @@ import com.bedu.sportstore.databinding.FragmentDetailProductBinding
 import com.bedu.sportstore.db.CarritoProducto
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.db.Producto
-import com.bedu.sportstore.ui.adapters.ProductDetailAdapter
+import com.bedu.sportstore.ui.main.productdetail.adapter.ProductDetailAdapter
 import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.UserSession
 import com.bumptech.glide.Glide

@@ -1,14 +1,15 @@
-package com.bedu.sportstore
+package com.bedu.sportstore.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bedu.sportstore.ui.main.home.HomeFragment
+import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.ActivityMainBinding
 import com.bedu.sportstore.ui.fragments.main.CarritoFragment
-import com.bedu.sportstore.ui.fragments.main.FormaPagoFragment
-import com.bedu.sportstore.ui.fragments.main.HistorialComprasFragment
-import com.bedu.sportstore.ui.fragments.main.PerfilFragment
+import com.bedu.sportstore.ui.main.historial_compra.HistorialComprasFragment
+import com.bedu.sportstore.ui.main.perfil.PerfilFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,11 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(Home())
+        replaceFragment(HomeFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.home -> replaceFragment(Home())
+                R.id.home -> replaceFragment(HomeFragment())
                 R.id.search -> replaceFragment(HistorialComprasFragment())
                 R.id.car -> replaceFragment(CarritoFragment())
                 R.id.settings -> replaceFragment(PerfilFragment())

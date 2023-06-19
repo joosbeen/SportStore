@@ -1,26 +1,19 @@
-package com.bedu.sportstore.ui.fragments.main
+package com.bedu.sportstore.ui.main.productos_categoria
 
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Toast
-import androidx.core.view.get
 import androidx.fragment.app.commit
-import androidx.fragment.app.setFragmentResult
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bedu.sportstore.Home
+import com.bedu.sportstore.ui.main.home.HomeFragment
 import com.bedu.sportstore.R
-import com.bedu.sportstore.Settings
-import com.bedu.sportstore.databinding.FragmentDetailProductBinding
 import com.bedu.sportstore.databinding.FragmentProductosCategoriaBinding
 import com.bedu.sportstore.db.Categoria
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.db.Producto
-import com.bedu.sportstore.ui.adapters.ProductoCategoriaAdapter
-import com.bedu.sportstore.ui.frag.ProductDetailFragment
-import com.bedu.sportstore.ui.toolbar.ToolbarBasic
+import com.bedu.sportstore.ui.main.productdetail.ProductDetailFragment
+import com.bedu.sportstore.ui.main.productos_categoria.adapter.ProductoCategoriaAdapter
 import com.bedu.sportstore.utileria.UtilFragment
 
 class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categoria),
@@ -49,7 +42,7 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
 
             if (it.id == -1) UtilFragment().replaceFragmetnMain(
                 requireActivity().supportFragmentManager,
-                Home()
+                HomeFragment()
             )
         }
 

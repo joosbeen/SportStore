@@ -1,4 +1,4 @@
-package com.bedu.sportstore.ui.adapters
+package com.bedu.sportstore.ui.main.productos_categoria.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class ProductoCategoriaAdapter(
         fun onProductoClick(producto: Producto)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoCategoriaAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_producto_categoria, parent, false)
@@ -31,7 +31,7 @@ class ProductoCategoriaAdapter(
 
     override fun getItemCount(): Int = productos.size
 
-    override fun onBindViewHolder(holder: ProductoCategoriaAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val producto = productos[position]
         holder.bind(producto)
 

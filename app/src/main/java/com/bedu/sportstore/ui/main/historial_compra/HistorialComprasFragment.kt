@@ -1,4 +1,4 @@
-package com.bedu.sportstore.ui.fragments.main
+package com.bedu.sportstore.ui.main.historial_compra
 
 import android.os.Bundle
 import android.util.Log
