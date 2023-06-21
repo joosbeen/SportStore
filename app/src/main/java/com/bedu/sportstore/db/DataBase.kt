@@ -1,6 +1,8 @@
 package com.bedu.sportstore.db
 
 import com.bedu.sportstore.R
+import com.bedu.sportstore.model.Categoria
+import com.bedu.sportstore.model.Producto
 
 object DataBase {
 

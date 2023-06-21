@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentHomeBinding
-import com.bedu.sportstore.db.Categoria
 import com.bedu.sportstore.db.DataBase
+import com.bedu.sportstore.model.Categoria
 import com.bedu.sportstore.ui.main.home.adapter.CategoriaAdapter
 import com.bedu.sportstore.ui.main.productos_categoria.ProductosCategoriaFragment
 import com.bedu.sportstore.utileria.UtilFragment

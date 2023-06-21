@@ -21,6 +21,9 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         super.onViewCreated(view, savedInstanceState)
         bdg = FragmentSignInBinding.bind(view)
 
+        bdg.edtSigninEmail.setText("carlos@gmail.com")
+        bdg.edtSigninContrasena.setText("Carlos12")
+
         bdg.btnSigninSubmit.setOnClickListener { onClickSigninSubmit() }
         bdg.txtSigninRegistrarse.setOnClickListener { onClickSigninRegister() }
     }

@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bedu.sportstore.R
-import com.bedu.sportstore.db.Categoria
+import com.bedu.sportstore.model.Categoria
 
 class CategoriaAdapter(val categorias: MutableList<Categoria>, val oncategoriaClick: OnCategoriaClickListener) :
     RecyclerView.Adapter<CategoriaAdapter.ViewHolder>() {

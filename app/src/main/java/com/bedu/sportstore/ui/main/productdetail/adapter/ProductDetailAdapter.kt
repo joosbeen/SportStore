@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bedu.sportstore.R
-import com.bedu.sportstore.db.Producto
+import com.bedu.sportstore.model.Producto
 import com.bumptech.glide.Glide
 
 class ProductDetailAdapter(
