@@ -8,11 +8,17 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentPerfilBinding
 import com.bedu.sportstore.db.DataBase
+import com.bedu.sportstore.model.entity.PerfilEntity
+import com.bedu.sportstore.repository.local.AppDatabaseRoom
 import com.bedu.sportstore.utileria.PermissionsManager
 import com.bedu.sportstore.utileria.UserSession
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PerfilFragment : Fragment(R.layout.fragment_perfil) {
 
@@ -23,11 +29,24 @@ class PerfilFragment : Fragment(R.layout.fragment_perfil) {
         super.onViewCreated(view, savedInstanceState)
         bdg = FragmentPerfilBinding.bind(view)
 
-        UserSession.user?.apply {
+        /*UserSession.user?.apply {
             bdg.txtPerfiloutNombre.text = this.nombre
             bdg.txtPerfiloutEmail.text = this.correo
             bdg.txtPerfiloutCompras.text =
                 DataBase.compras.filter { it.usuarioId == this.id }.size.toString()
+        }*/
+
+        val databaseRoom = AppDatabaseRoom.getDatabase(requireContext())
+        val perfilDao = databaseRoom.perfilDao()
+        var usuarios = listOf<PerfilEntity>()
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                usuarios = perfilDao.getAll()
+            }
+            bdg.txtPerfiloutNombre.text = usuarios[0].nombre
+            bdg.txtPerfiloutEmail.text = usuarios[0].correo
+            bdg.txtPerfiloutCompras.text =
+                DataBase.compras.filter { it.usuarioId == usuarios[0].uid }.size.toString()
         }
 
 

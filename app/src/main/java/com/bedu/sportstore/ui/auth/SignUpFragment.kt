@@ -6,17 +6,22 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.bedu.sportstore.ui.MainActivity
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentSignUpBinding
-import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.db.Usuario
+import com.bedu.sportstore.model.entity.PerfilEntity
 import com.bedu.sportstore.model.request.SignupVO
 import com.bedu.sportstore.model.response.AuthResponse
+import com.bedu.sportstore.repository.local.AppDatabaseRoom
 import com.bedu.sportstore.repository.remote.SportStoreHttp
 import com.bedu.sportstore.utileria.Form
 import com.bedu.sportstore.utileria.UserSession
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -93,24 +98,27 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         call.enqueue(object : Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse?>, response: Response<AuthResponse?>) {
 
-                Log.i("sportauth", "onResponse response.body(): ${response.body()}")
-                Log.i("sportauth", "onResponse response.body()?.success: ${response.body()?.success}")
-                Log.i("sportauth", "onResponse response.body()?.usuario: ${response.body()?.usuario}")
-
                 if (response.body() != null && response.body()?.success == true && response.body()?.usuario != null) {
 
-                    val user = response.body()?.usuario
-                    UserSession.userEnty = user
-                    user?.let {
+                    val databaseRoom = AppDatabaseRoom.getDatabase(requireActivity())
+                    val perfilDao = databaseRoom.perfilDao()
+                    response.body()?.usuario?.let {
+                        lifecycleScope.launch {
+                            withContext(Dispatchers.IO) {
+                                perfilDao.insert(
+                                    PerfilEntity(it.id, it.nombre, it.correo, it.rol, "")
+                                )
+                            }
+                        }
+
                         UserSession.user = Usuario(it.id, it.nombre, it.correo, "", it.rol)
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        intent.putExtra("usuario", response.body()?.usuario.toString())
+                        startActivity(intent)
+                        activity?.finish()
                     }
-                    val intent = Intent(requireContext(), MainActivity::class.java)
-                    intent.putExtra("usuario", response.body()?.usuario.toString())
-                    startActivity(intent)
-                    activity?.finish()
 
                 } else {
-
                     val msg = response.body()?.message ?: "No se pudo registrar intente mas tarde!"
                     showSnackbar(msg)
                 }
