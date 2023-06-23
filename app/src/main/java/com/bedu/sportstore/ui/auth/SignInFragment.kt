@@ -15,6 +15,7 @@ import com.bedu.sportstore.repository.remote.SportStoreHttp
 import com.bedu.sportstore.model.response.AuthResponse
 import com.bedu.sportstore.ui.MainActivity
 import com.bedu.sportstore.utileria.Form
+import com.bedu.sportstore.utileria.TAGS
 import com.bedu.sportstore.utileria.UserSession
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -93,12 +94,14 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
                 } else {
                     showSnackbar(getString(R.string.msg_error_login_invalid))
+                    Log.e(TAGS.ERROR, "onResponse: ${getString(R.string.msg_error_login_invalid)}")
                 }
 
             }
 
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                 showSnackbar(getString(R.string.msg_error_server))
+                Log.e(TAGS.ERROR, "onResponse: ${getString(R.string.msg_error_server)}")
             }
         })
 

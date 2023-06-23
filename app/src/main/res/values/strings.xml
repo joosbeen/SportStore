@@ -44,4 +44,6 @@
     <string name="title_novedades">NOVEDADES</string>
     <string name="msg_error_login_invalid">Correo/Contraseña invalido!</string>
     <string name="msg_error_server">Ocurrio un error inesperado, intente mas tarde.</string>
+    <string name="latitud">Latitud</string>
+    <string name="longitud">Longitud</string>
 </resources>
