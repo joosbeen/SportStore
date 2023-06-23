@@ -12,7 +12,6 @@ import com.bedu.sportstore.ui.main.historial_compra.HistorialComprasFragment
 import com.bedu.sportstore.ui.main.perfil.PerfilFragment
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
