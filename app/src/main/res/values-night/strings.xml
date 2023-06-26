@@ -40,4 +40,5 @@
     <string name="msg_error_server">Ocurrio un error inesperado, intente mas tarde.</string>
     <string name="latitud">Latitud</string>
     <string name="longitud">Longitud</string>
+    <string name="default_notification_channel_id" translatable="false">default_notification_channel_id</string>
 </resources>

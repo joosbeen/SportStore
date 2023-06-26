@@ -1,17 +1,19 @@
 package com.bedu.sportstore.utileria
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
 class PermissionsManager {
-
-    //private lateinit var locationClient: FusedLocationProviderClient
 
     fun requestPermissions(activity: Activity, permissions: Array<String>, requestCode: Int) {
         ActivityCompat.requestPermissions(activity, permissions, requestCode)
@@ -33,27 +35,36 @@ class PermissionsManager {
         ) == PackageManager.PERMISSION_GRANTED)
 
     fun locationClient(activity: Activity) = LocationServices.getFusedLocationProviderClient(activity)
-        /*locationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                // Obtener las coordenadas de la ubicación
-                val latitude = location?.latitude
-                val longitude = location?.longitude
 
-                // Hacer algo con las coordenadas
-                // ...
+
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun checkNotificationPermission(context: Context): Boolean{
+        return ActivityCompat
+            .checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) ==
+                PackageManager.PERMISSION_GRANTED
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun requestPermissions(activity: Activity) {
+        ActivityCompat.requestPermissions(
+            activity,
+            arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+            1
+        )
+    }
+
+    fun executeOrRequestPermission(activity: Activity, callback: () -> Unit) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (!checkNotificationPermission(activity)) {
+                requestPermissions(activity)
+            } else{
+                callback()
             }
-            .addOnFailureListener { exception: Exception ->
-                // Manejar errores al obtener la ubicación
-                // ...
-            }*/
-
-    /*fun permissionsAreGranted(activity: Activity): Boolean {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED) {
-
-
+        } else {
+            callback()
         }
-    }*/
+    }
 
     companion object {
         const val LOCATION_PERMISSION_REQUEST_CODE = 123
