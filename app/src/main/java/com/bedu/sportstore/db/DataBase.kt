@@ -21,7 +21,7 @@ object DataBase {
     )
 
     // Lista de Compras
-    var compras = mutableListOf(
+    /*var compras = mutableListOf(
         Compra("1", "12/12/2022", "Entregado", 523.99F, 2),
         Compra("2", "27/11/2022", "Entregado", 523.99F, 2),
         Compra("3", "23/09/2022", "Entregado", 523.99F, 3),
@@ -30,6 +30,13 @@ object DataBase {
         Compra("6", "01/11/2022", "Entregado", 523.99F, 3),
         Compra("7", "12/01/2022", "Entregado", 523.99F, 3),
         Compra("8", "09/03/2022", "Entregado", 523.99F, 2)
+    )*/
+
+    val compras = Compra(
+        folio = "123",
+        fecha = "27/11/2022",
+        estado = "Entregado",
+        costo = 999.99F
     )
 
     // Lista de productos

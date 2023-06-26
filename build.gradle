@@ -4,6 +4,8 @@ buildscript {
     }
     dependencies {
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
+        //Room
+        classpath "com.android.tools.build:gradle:7.0.2" // Versión actual de Gradle
     }
 }
 plugins {
