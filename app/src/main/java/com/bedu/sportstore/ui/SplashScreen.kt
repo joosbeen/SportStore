@@ -41,7 +41,7 @@ class SplashScreen : AppCompatActivity() {
                     UserSession.user = Usuario(it.uid, it.nombre, it.correo, "", it.rol)
                 }
             }
-            
+
             val activityClass = if (usuarios.size>0) MainActivity::class.java else AuthActivity::class.java
             val intent= Intent(this, activityClass)
             startActivity(intent)

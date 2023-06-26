@@ -57,5 +57,7 @@ class PermissionsManager {
 
     companion object {
         const val LOCATION_PERMISSION_REQUEST_CODE = 123
+        const val REQUEST_IMAGE_CAPTURE_CODE = 124
+        const val REQUEST_IMAGE_GALLERY_CODE = 225
     }
 }

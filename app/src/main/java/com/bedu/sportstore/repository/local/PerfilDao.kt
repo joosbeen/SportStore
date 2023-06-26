@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.bedu.sportstore.model.entity.PerfilEntity
 
 @Dao
@@ -20,5 +21,8 @@ interface PerfilDao {
 
     @Delete
     fun delete(perfil: PerfilEntity)
+
+    @Update
+    fun update(perfil: PerfilEntity)
 
 }

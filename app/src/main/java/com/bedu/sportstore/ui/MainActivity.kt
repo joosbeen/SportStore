@@ -1,15 +1,16 @@
 package com.bedu.sportstore.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.bedu.sportstore.ui.main.home.HomeFragment
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.ActivityMainBinding
 import com.bedu.sportstore.ui.fragments.main.CarritoFragment
 import com.bedu.sportstore.ui.main.historial_compra.HistorialComprasFragment
+import com.bedu.sportstore.ui.main.home.HomeFragment
 import com.bedu.sportstore.ui.main.perfil.PerfilFragment
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,6 +51,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    private fun changeCountCart() {
     }
 
     private fun replaceFragment(fragment : Fragment){
