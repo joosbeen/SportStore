@@ -36,8 +36,8 @@ class HistorialCompraAdapter(
         fun bind(compra: Compra) {
             histCompOutFolio.text = compra.folio
             histCompOutCosto.text = "$ ${compra.costo.toString()} MXN"
-            histCompOutFecha.text = compra.fecha
-            histCompOutEstado.text = compra.estado
+            histCompOutFecha.text = compra.fecha.toString()
+            histCompOutEstado.text = compra.estado.toString()
         }
 
     }
