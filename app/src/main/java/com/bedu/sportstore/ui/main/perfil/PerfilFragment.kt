@@ -22,6 +22,8 @@ import com.bedu.sportstore.databinding.FragmentPerfilBinding
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.entity.PerfilEntity
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
+import com.bedu.sportstore.ui.AuthActivity
+import com.bedu.sportstore.ui.MainActivity
 import com.bedu.sportstore.utileria.ImageFormat
 import com.bedu.sportstore.utileria.PermissionsManager
 import kotlinx.coroutines.Dispatchers
@@ -45,6 +47,21 @@ class PerfilFragment : Fragment(R.layout.fragment_perfil), PopupMenu.OnMenuItemC
 
         bdg.imgLocationUser.setOnClickListener { getLocation() }
         bdg.imgPerfilUsario.setOnClickListener { openPopupMenu(it) }
+        bdg.btnPerfilCerrarSession.setOnClickListener { cerrarSesion() }
+    }
+
+    private fun cerrarSesion() {
+        val databaseRoom = AppDatabaseRoom.getDatabase(requireContext())
+        val perfilDao = databaseRoom.perfilDao()
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                perfilDao.delete(usuarios[0])
+            }
+        }
+        val intent = Intent(requireContext(), AuthActivity::class.java)
+        startActivity(intent)
+        activity?.finish()
+
     }
 
     private fun setProfileData() {
