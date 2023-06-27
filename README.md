@@ -4,7 +4,6 @@
 
 ### Integrantes de Equipo 8
 
-- Jesús Alexis Tenorio Hernández / alexistenorio1230@gmail.com
 - Liliana Rodriguez Rodriguez / Dgliliana.rodriguez@gmail.com
 - José Benito García Solano / JOOSBEEN@GMAIL.COM
 - Blanca Estela Sotelo de la Cruz / blancasotelo.rfm@gmail.com
