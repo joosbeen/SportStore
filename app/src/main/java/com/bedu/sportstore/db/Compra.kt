@@ -6,13 +6,12 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "compra")
 data class Compra(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
     val folio: String,
-    val costo: Float,
     val fecha: String,
-    val estado: String
+    val estado: String,
+    val costo: Float,
+    val usuarioId: Long
 ) {
     fun add(compra: Compra) {
-
     }
 }

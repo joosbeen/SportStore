@@ -32,11 +32,35 @@ object DataBase {
         Compra("8", "09/03/2022", "Entregado", 523.99F, 2)
     )*/
 
-    val compras = Compra(
-        folio = "123",
-        fecha = "27/11/2022",
-        estado = "Entregado",
-        costo = 999.99F
+    var compras = mutableListOf<Compra>(
+        Compra(
+            folio = "123",
+            fecha = "27/11/2022",
+            estado = "Entregado",
+            costo = 999.99F,
+            usuarioId = 2
+        ),
+        Compra(
+            folio = "123",
+            fecha = "27/11/2022",
+            estado = "Entregado",
+            costo = 999.99F,
+            usuarioId = 2
+        ),
+        Compra(
+            folio = "123",
+            fecha = "27/11/2022",
+            estado = "Entregado",
+            costo = 888.88F,
+            usuarioId = 2
+        ),
+        Compra(
+            folio = "123",
+            fecha = "27/11/2022",
+            estado = "Entregado",
+            costo = 777.77F,
+            usuarioId = 2
+        )
     )
 
     // Lista de productos

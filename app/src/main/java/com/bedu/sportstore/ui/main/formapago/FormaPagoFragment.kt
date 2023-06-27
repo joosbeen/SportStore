@@ -106,7 +106,7 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
         val compra = Compra(
             "${date.time}",
             "${date.date}/${date.month}/${date.year}",
-            "Pendiente",
+            "Entregado",
             (costoSubtotal + costoEnvio),
             UserSession.user?.id ?: 0
         )
