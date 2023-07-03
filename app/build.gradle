@@ -4,6 +4,7 @@ plugins {
     id "androidx.navigation.safeargs"
     id "kotlin-parcelize"
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -74,11 +75,6 @@ dependencies {
     //location
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 
-    //def room_version = "2.5.0"
-    //implementation("androidx.room:room-runtime:$room_version")
-    //annotationProcessor("androidx.room:room-compiler:$room_version")
-    //annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
-
     //Room
     def room_version = "2.5.1"
     implementation "androidx.room:room-runtime:$room_version"
@@ -88,8 +84,9 @@ dependencies {
     // Kotlin Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
 
-    // lifecycle
-    //implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
-    //implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
-    //implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
+    //Firebase
+    implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
+    implementation platform('com.google.firebase:firebase-bom:28.0.1')
+    implementation 'com.google.firebase:firebase-firestore-ktx:23.0.0'
+
 }

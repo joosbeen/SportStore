@@ -7,32 +7,38 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.bedu.sportstore.ui.MainActivity
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentSignUpBinding
 import com.bedu.sportstore.db.Usuario
+import com.bedu.sportstore.model.collections.User
 import com.bedu.sportstore.model.entity.PerfilEntity
-import com.bedu.sportstore.model.request.SignupVO
-import com.bedu.sportstore.model.response.AuthResponse
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
-import com.bedu.sportstore.repository.remote.SportStoreHttp
+import com.bedu.sportstore.ui.MainActivity
 import com.bedu.sportstore.utileria.Form
 import com.bedu.sportstore.utileria.UserSession
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
     private lateinit var binding: FragmentSignUpBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSignUpBinding.bind(view)
+
+        auth = Firebase.auth
+        db = Firebase.firestore
+
         binding.btnSigninSubmit.setOnClickListener { onClickSubmitRegister() }
 
         binding.edtSigninNombre.setText("JOSE BENITO")
@@ -90,60 +96,63 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
             return
         }
 
-        val auth = SportStoreHttp.authHttp()
-        val signup = SignupVO(nombre, email, contrasena, contrasenaConfirmar, "cliente")
-        Log.i("sportauth", "onClickSubmitRegister: $signup")
-        val call = auth.signup(signup)
+        createAccount(email, contrasena, nombre)
 
-        call.enqueue(object : Callback<AuthResponse> {
-            override fun onResponse(call: Call<AuthResponse?>, response: Response<AuthResponse?>) {
+    }
 
-                if (response.body() != null && response.body()?.success == true && response.body()?.usuario != null) {
-
-                    val databaseRoom = AppDatabaseRoom.getDatabase(requireActivity())
-                    val perfilDao = databaseRoom.perfilDao()
-                    response.body()?.usuario?.let {
-                        lifecycleScope.launch {
-                            withContext(Dispatchers.IO) {
-                                perfilDao.insert(
-                                    PerfilEntity(it.id, it.nombre, it.correo, it.rol, "")
-                                )
-                            }
-                        }
-
-                        UserSession.user = Usuario(it.id, it.nombre, it.correo, "", it.rol)
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        intent.putExtra("usuario", response.body()?.usuario.toString())
-                        startActivity(intent)
-                        activity?.finish()
+    private fun createAccount(email: String, password: String, nombre: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    if (user != null) {
+                        saveUser(user.uid, email, nombre)
                     }
-
                 } else {
-                    val msg = response.body()?.message ?: "No se pudo registrar intente mas tarde!"
-                    showSnackbar(msg)
+                    task.exception?.let { e ->
+                        e.message?.let { showSnackbar(it) }
+                    }
                 }
-
             }
 
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                showSnackbar(getString(R.string.msg_error_server))
+    }
+
+    private fun saveUser(uid: String, email: String, nombre: String) {
+
+        val databaseRoom = AppDatabaseRoom.getDatabase(requireActivity())
+        val perfilDao = databaseRoom.perfilDao()
+        val usuario = User(uid, email, nombre)
+
+        db.collection("usuarios")
+            .add(usuario)
+            .addOnSuccessListener { documentReference ->
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        perfilDao.insert(
+                            PerfilEntity(uid.length.toLong(), nombre, email, "cliente", "")
+                        )
+                    }
+                }
+                val documentId = documentReference.id
+                UserSession.user = Usuario(uid.length.toLong(), nombre, email, "", "cliente")
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                intent.putExtra("usuario", UserSession.user.toString())
+                startActivity(intent)
+                activity?.finish()
+
             }
-        })
-
-        // Guargar el usuario en sesion
-        /*val id = (DataBase.usuarios.size + 1L)
-        val usuario = Usuario(id, nombre, email, contrasena, "cliente")
-        UserSession.user = usuario*/
-
-        // Cambiar al ActivityMain
-        /*val intent = Intent(requireContext(), MainActivity::class.java)
-        intent.putExtra("usuario", usuario.toString())
-        startActivity(intent)
-        activity?.finish()*/
+            .addOnFailureListener { e ->
+                // Ocurrió un error al guardar el documento
+                Log.e(TAG, "saveUser: failure")
+            }
     }
 
     private fun showSnackbar(msg: String): Unit {
         val snack = Snackbar.make(requireView(), msg, Snackbar.LENGTH_LONG)
         snack.show()
+    }
+
+    companion object {
+        const val TAG = "sportsignup"
     }
 }

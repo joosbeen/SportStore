@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.WindowManager
 import androidx.lifecycle.lifecycleScope
 import com.bedu.sportstore.R
@@ -13,6 +12,7 @@ import com.bedu.sportstore.db.Usuario
 import com.bedu.sportstore.model.entity.PerfilEntity
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
 import com.bedu.sportstore.utileria.UserSession
+import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -21,6 +21,10 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_activity)
+
+        // Inicializando FirebaseApp
+        FirebaseApp.initializeApp(this)
+
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAGS_CHANGED
