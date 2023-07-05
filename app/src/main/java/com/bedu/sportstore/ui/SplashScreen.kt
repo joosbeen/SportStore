@@ -50,8 +50,6 @@ class SplashScreen : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            throw RuntimeException("SportStore Crash")
-
             if (usuarios.size > 0) {
                 usuarios[0].let {
                     UserSession.user = Usuario(it.uid, it.nombre, it.correo, "", it.rol)
