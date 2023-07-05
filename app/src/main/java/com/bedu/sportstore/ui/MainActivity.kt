@@ -19,18 +19,28 @@ import com.bedu.sportstore.ui.main.historial_compra.HistorialComprasFragment
 import com.bedu.sportstore.ui.main.home.HomeFragment
 import com.bedu.sportstore.ui.main.perfil.PerfilFragment
 import com.bedu.sportstore.utileria.PermissionsManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.ktx.Firebase
 import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(HomeFragment())
+
+        auth = Firebase.auth
+
+        // config crashlitycs set id user
+        auth.currentUser?.uid?.let { FirebaseCrashlytics.getInstance().setUserId(it) }
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
