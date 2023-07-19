@@ -21,18 +21,23 @@ class HistorialComprasFragment : Fragment(R.layout.fragment_historial_compras) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHistorialComprasBinding.bind(view)
 
-
-        val toolbar =ToolbarBasic().show((activity as AppCompatActivity?)!!, "HISTORIAL DE COMPRA", false)
+        val toolbar =
+            ToolbarBasic().show((activity as AppCompatActivity?)!!, "HISTORIAL DE COMPRA", false)
         toolbar.setNavigationOnClickListener {
             Log.i("", "onViewCreated: ${it.id}")
         }
 
         val userId = UserSession.user?.id ?: 0
-        val compras = DataBase.compras.filter { it.usuarioId == userId}
+        val compras = DataBase.compras.filter { it.usuarioId == userId }
 
-        binding.histCompRVContent.setHasFixedSize(true)
-        binding.histCompRVContent.layoutManager = LinearLayoutManager(view.context)
-        binding.histCompRVContent.adapter = HistorialCompraAdapter(compras)
+        if (compras.isEmpty()) {
+            binding.histCompRVContent.visibility = View.GONE
+            binding.notContent.visibility = View.VISIBLE
+        } else {
+            binding.histCompRVContent.setHasFixedSize(true)
+            binding.histCompRVContent.layoutManager = LinearLayoutManager(view.context)
+            binding.histCompRVContent.adapter = HistorialCompraAdapter(compras)
+        }
 
 
     }

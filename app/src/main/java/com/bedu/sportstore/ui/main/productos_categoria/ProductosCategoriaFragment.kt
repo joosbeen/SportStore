@@ -3,17 +3,14 @@ package com.bedu.sportstore.ui.main.productos_categoria
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import androidx.fragment.app.commit
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bedu.sportstore.ui.main.home.HomeFragment
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentProductosCategoriaBinding
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.Categoria
 import com.bedu.sportstore.model.Producto
-import com.bedu.sportstore.ui.main.productdetail.ProductDetailFragment
 import com.bedu.sportstore.ui.main.productos_categoria.adapter.ProductoCategoriaAdapter
-import com.bedu.sportstore.utileria.UtilFragment
 
 class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categoria),
     ProductoCategoriaAdapter.OnProductoClickListener {
@@ -41,10 +38,7 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
         binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
         binding.toolBarFragment.setNavigationOnClickListener {
 
-            if (it.id == -1) UtilFragment().replaceFragmetnMain(
-                requireActivity().supportFragmentManager,
-                HomeFragment()
-            )
+            if (it.id == -1)  findNavController().navigate(R.id.action_productosCategoriaFragment_to_homeFragment)
         }
 
         val productos = DataBase.productos.filter { it.categoriaId == idCategoria }
@@ -57,7 +51,9 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
     }
 
     override fun onProductoClick(producto: Producto) {
-        TODO("OPEN DETAIL PRODUCT FRAGMENT")
+        val action = ProductosCategoriaFragmentDirections
+            .actionProductosCategoriaFragmentToProductDetailFragment(producto.id, producto.categoriaId)
+        findNavController().navigate(action)
         /*parentFragmentManager.commit {
             replace(
                 R.id.frame_Layout,

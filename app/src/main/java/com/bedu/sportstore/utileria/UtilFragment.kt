@@ -2,7 +2,6 @@ package com.bedu.sportstore.utileria
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.bedu.sportstore.R
 
 class UtilFragment {
 

@@ -9,6 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import androidx.room.Database
 import com.bedu.sportstore.R
 import com.bedu.sportstore.core.notification.NotificationApp
@@ -30,30 +33,36 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(HomeFragment())
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
+        navController = navHostFragment.navController
+        binding.bottomNavigationView.setupWithNavController(navController)
+
+        //replaceFragment(HomeFragment())
 
         auth = Firebase.auth
 
         // config crashlitycs set id user
         auth.currentUser?.uid?.let { FirebaseCrashlytics.getInstance().setUserId(it) }
 
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+        /*binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.home -> replaceFragment(HomeFragment())
-                R.id.search -> replaceFragment(HistorialComprasFragment())
-                R.id.car -> replaceFragment(CarritoFragment())
-                R.id.settings -> replaceFragment(PerfilFragment())
+                R.id.homeFragment -> replaceFragment(HomeFragment())
+                R.id.historialComprasFragment -> replaceFragment(HistorialComprasFragment())
+                R.id.carritoFragment -> replaceFragment(CarritoFragment())
+                R.id.perfilFragment -> replaceFragment(PerfilFragment())
                 else -> Toast.makeText(this, getString(R.string.not_item_selected), Toast.LENGTH_SHORT).show()
 
             }
 
             true
-        }
+        }*/
 
         if (DataBase.productos.size>0) {
             val index = Random.nextInt(0, DataBase.productos.size)

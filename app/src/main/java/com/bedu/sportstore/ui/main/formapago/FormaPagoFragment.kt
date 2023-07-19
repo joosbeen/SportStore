@@ -3,7 +3,7 @@ package com.bedu.sportstore.ui.fragments.main
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import com.bedu.sportstore.ui.main.home.HomeFragment
+import androidx.navigation.fragment.findNavController
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentFormaPagoBinding
 import com.bedu.sportstore.db.CarritoProducto
@@ -28,10 +28,9 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
         binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
         binding.toolBarFragment.setNavigationOnClickListener {
 
-            if (it.id == -1) UtilFragment().replaceFragmetnMain(
-                requireActivity().supportFragmentManager,
-                CarritoFragment()
-            )
+            if (it.id == -1)
+                findNavController().navigate(R.id.action_formaPagoFragment_to_carritoFragment)
+
         }
 
         binding.fpBtnPagar.setOnClickListener { validarDatosTarjeta() }
@@ -62,36 +61,36 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
 
         // Validar si no es vacio num eta
         if (Form.isInvalidText(etaNumero)) {
-            showMessage( R.string.error_msj_eta_numero_requerido)
+            showMessage(R.string.error_msj_eta_numero_requerido)
             return
         }
 
         // Validar 16 digitos
         if (etaNumero2.length != 16) {
-            showMessage( R.string.error_msj_eta_numero_invalido)
+            showMessage(R.string.error_msj_eta_numero_invalido)
             return
         }
 
         // Validar si no es vacio expiracion
         if (Form.isInvalidText(etaExpiracion)) {
-            showMessage( R.string.error_msj_eta_expiracion_invalido)
+            showMessage(R.string.error_msj_eta_expiracion_invalido)
             return
         }
 
         // Validar CVC vacio
         if (Form.isInvalidText(etaCVC)) {
-            showMessage( R.string.error_msj_eta_cvc_requerida)
+            showMessage(R.string.error_msj_eta_cvc_requerida)
             return
         }
 
         // Validar CVC tamaño
         if (etaCVC.length != 3) {
-            showMessage( R.string.error_msj_eta_cvc_invalido)
+            showMessage(R.string.error_msj_eta_cvc_invalido)
             return
         }
 
         if (Form.isInvalidText(etaTitular)) {
-            showMessage( R.string.error_msj_eta_titular_requerida)
+            showMessage(R.string.error_msj_eta_titular_requerida)
             return
         }
 
@@ -113,7 +112,7 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
         DataBase.compras.add(compra)
 
         // Limpiar Carrito
-        val  carrito = DataBase.carrito.filter { it.usuarioId != UserSession.user?.id }
+        val carrito = DataBase.carrito.filter { it.usuarioId != UserSession.user?.id }
         DataBase.carrito = carrito as MutableList<CarritoProducto>
 
         showMessage(R.string.compra_exitosa)

@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp">
 
-
         <ImageView
             android:id="@+id/cartImagenProducto"
             android:layout_width="112dp"
@@ -34,7 +33,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.35" />
 
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
             android:layout_width="wrap_content"
@@ -50,7 +48,6 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toEndOf="@+id/cartImagenProducto"
             app:layout_constraintTop_toTopOf="@+id/cartImagenProducto">
-
 
             <TextView
                 android:id="@+id/cartNombreProducto"
@@ -99,9 +96,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_delete" />
 
-
         </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

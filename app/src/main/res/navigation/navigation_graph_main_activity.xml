@@ -14,7 +14,11 @@
         android:id="@+id/formaPagoFragment"
         android:name="com.bedu.sportstore.ui.fragments.main.FormaPagoFragment"
         android:label="fragment_forma_pago"
-        tools:layout="@layout/fragment_forma_pago" />
+        tools:layout="@layout/fragment_forma_pago" >
+        <action
+            android:id="@+id/action_formaPagoFragment_to_carritoFragment"
+            app:destination="@id/carritoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.bedu.sportstore.ui.main.home.HomeFragment"
@@ -32,6 +36,15 @@
         <action
             android:id="@+id/action_productosCategoriaFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+        <argument
+            android:name="idCategoria"
+            app:argType="integer" />
+        <argument
+            android:name="nombreCategoria"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productosCategoriaFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -40,6 +53,15 @@
         <action
             android:id="@+id/action_productDetailFragment_to_formaPagoFragment"
             app:destination="@id/formaPagoFragment" />
+        <argument
+            android:name="idProducto"
+            app:argType="integer" />
+        <argument
+            android:name="idCategoria"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_productosCategoriaFragment"
+            app:destination="@id/productosCategoriaFragment" />
     </fragment>
     <fragment
         android:id="@+id/perfilFragment"
