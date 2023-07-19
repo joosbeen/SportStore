@@ -119,10 +119,11 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
         showMessage(R.string.compra_exitosa)
 
         // Ir al fragment home
-        val fragmentManager = activity?.supportFragmentManager
+        TODO("Ir al fragment home")
+        /*val fragmentManager = activity?.supportFragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.frame_Layout, HomeFragment())
-        fragmentTransaction?.commit()
+        fragmentTransaction?.commit()*/
 
     }
 

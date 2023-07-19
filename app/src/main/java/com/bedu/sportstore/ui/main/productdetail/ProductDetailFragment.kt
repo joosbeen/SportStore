@@ -108,10 +108,11 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
         context?.sendBroadcast(intent)
     }
     private fun finalizarCompra(){
-        requireActivity().supportFragmentManager.commit {
+        TODO("finalizar Compra")
+        /*requireActivity().supportFragmentManager.commit {
             replace(R.id.frame_Layout, FormaPagoFragment())
             addToBackStack("formaPagoFragment")
-        }
+        }*/
     }
 
     override fun onProductoClick(producto: Producto) {

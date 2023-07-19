@@ -33,8 +33,4 @@ class HomeFragment : Fragment(R.layout.fragment_home), CategoriaAdapter.OnCatego
         )
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
 }

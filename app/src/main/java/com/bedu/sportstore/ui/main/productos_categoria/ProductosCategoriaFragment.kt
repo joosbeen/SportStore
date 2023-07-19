@@ -57,13 +57,13 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
     }
 
     override fun onProductoClick(producto: Producto) {
-        val detailFragment = ProductDetailFragment()
-        parentFragmentManager.commit {
+        TODO("OPEN DETAIL PRODUCT FRAGMENT")
+        /*parentFragmentManager.commit {
             replace(
                 R.id.frame_Layout,
                 ProductDetailFragment.newInstance(producto.id, idCategoria ?: 0)
             )
-        }
+        }*/
 
     }
 

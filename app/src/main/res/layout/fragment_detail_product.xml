@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.main.home.HomeFragment">
 
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBarFragment"
-        android:background="@color/dark_primary"
-        app:titleTextColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:theme="@style/ToolbarTheme" />
+        android:background="@color/dark_primary"
+        app:theme="@style/ToolbarTheme"
+        app:titleTextColor="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <!--include
-            android:id="@+id/include"
-            layout="@layout/action_bar_toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" /-->
 
         <ImageView
             android:id="@+id/imgProducto"
@@ -47,11 +39,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="TENIS NIKE AIR MAX"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgProducto" />
+            app:layout_constraintTop_toBottomOf="@+id/imgProducto"
+            tools:text="TENIS NIKE AIR MAX" />
 
         <TextView
             android:id="@+id/precioProducto"
@@ -59,13 +50,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:text="$ 2,399.00"
             app:layout_constraintBottom_toBottomOf="@+id/nombreProducto"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/imgProducto"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="$ 2,399.00" />
 
         <TextView
             android:id="@+id/descripcionProducto"
@@ -73,52 +63,46 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Para hombre  Original"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nombreProducto" />
-
-
-        <Button
-            android:id="@+id/buttonAnadirCarrito"
-            style="@style/boton_anadir_carrito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="96dp"
-            android:text="Añadir al carrito"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.44"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/buttonFinalizarCompra"
-            style="@style/boton_finalizar_compra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:text="Finalizar compra"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.447"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button"
-            app:layout_constraintVertical_bias="0.125" />
+            app:layout_constraintTop_toBottomOf="@+id/nombreProducto"
+            tools:text="Para hombre  Original" />
 
         <TextView
             android:id="@+id/descripcionLargaProducto"
             android:layout_width="369dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="41dp"
-            android:text="Clásicos tenis de correr, con un diseño de corte bajo. Más que un calzado, es una declaración de estilo. Los Nike Air
-            Max llegaron a la escena en el 87 y ganarón seguidores en el mundo."
-            app:layout_constraintBottom_toTopOf="@+id/buttonAnadirCarrito"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/descripcionProducto"
-            app:layout_constraintVertical_bias="0.39" />
+            app:layout_constraintTop_toBottomOf="@+id/descripcionProducto"
+            tools:text="Clásicos tenis de correr, con un diseño de corte bajo. Más que un calzado, es una declaración de estilo. Los Nike Air
+            Max llegaron a la escena en el 87 y ganarón seguidores en el mundo." />
+
+        <Button
+            android:id="@+id/buttonAnadirCarrito"
+            style="@style/txt_btn_dark_primary"
+            android:layout_width="369dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btn_dark_primary"
+            android:text="@string/anadir_al_carrito"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionLargaProducto" />
+
+        <Button
+            android:id="@+id/buttonFinalizarCompra"
+            style="@style/txt_btn_dark_primary"
+            android:layout_width="369dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_dark_primary"
+            android:text="@string/finalizar_compra"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonAnadirCarrito" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -63,10 +63,11 @@ class CarritoFragment : Fragment(R.layout.fragment_carrito),
 
     private fun openFragmetnFormaPago() {
         if (totalCosto>0) {
-            requireActivity().supportFragmentManager.commit {
+            TODO("open Fragmetn Forma Pago")
+            /*requireActivity().supportFragmentManager.commit {
                 replace(R.id.frame_Layout, FormaPagoFragment())
                 addToBackStack("formaPagoFragment")
-            }
+            }*/
         }
     }
 

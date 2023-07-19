@@ -33,4 +33,19 @@
         style="@style/txt_btn_dark_primary"
         android:background="@drawable/btn_dark_primary" />
 
+    <Button
+        android:id="@+id/btnSigninGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/google"
+        style="@style/txt_btn_dark_primary"
+        android:background="@drawable/btn_dark_primary"/>
+
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bedu.sportstore.R
 import com.bedu.sportstore.model.Categoria
@@ -29,7 +30,7 @@ class CategoriaAdapter(val categorias: MutableList<Categoria>, val oncategoriaCl
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val categoria = categorias[position]
         holder.bind(categoria)
-        holder.itemView.findViewById<TextView>(R.id.txtCategoryRedirect).setOnClickListener {
+        holder.itemView.findViewById<CardView>(R.id.card_view).setOnClickListener {
             oncategoriaClick.oncategoriaClick(categoria)
         }
 
