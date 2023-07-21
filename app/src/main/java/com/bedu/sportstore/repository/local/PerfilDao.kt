@@ -14,7 +14,7 @@ interface PerfilDao {
     fun getAll(): List<PerfilEntity>
 
     @Insert
-    fun insert(perfil: PerfilEntity)
+    suspend fun insert(perfil: PerfilEntity)
 
     @Insert
     fun insertAll(vararg perfil: PerfilEntity)

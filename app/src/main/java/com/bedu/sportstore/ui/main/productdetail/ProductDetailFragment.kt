@@ -15,24 +15,24 @@ import com.bedu.sportstore.databinding.FragmentDetailProductBinding
 import com.bedu.sportstore.db.CarritoProducto
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.Categoria
-import com.bedu.sportstore.model.Producto
-import com.bedu.sportstore.ui.main.productdetail.adapter.ProductDetailAdapter
-import com.bedu.sportstore.ui.main.productos_categoria.ProductosCategoriaFragment
+import com.bedu.sportstore.model.response.ProductoResponse
+import com.bedu.sportstore.repository.remote.SportStoreHttp
 import com.bedu.sportstore.utileria.UserSession
-import com.bedu.sportstore.utileria.UtilFragment
+import com.bedu.sportstore.utileria.Utility
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
-    ProductDetailAdapter.OnProductoClickListener {
+class ProductDetailFragment : Fragment(R.layout.fragment_detail_product) {
 
     private var categoria: Categoria = Categoria()
-
-    //private var producto: Producto? = null
+    private var producto: ProductoResponse? = null
     private lateinit var binding: FragmentDetailProductBinding
-    private var nuevoElementoCarrito: CarritoProducto? = null
     private var idcategoria: Int = 0
     private var idproducto: Int = 0
+    private val productoHttp by lazy { SportStoreHttp.productoHttp() }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,12 +48,42 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailProductBinding.bind(view)
 
-        categoria = DataBase.categorias.find { it.id == idcategoria }!!
-        val productoSeleccionado = DataBase.productos.find { it.id == idproducto }
-        binding.toolBarFragment.title = productoSeleccionado?.nombre
+        cargarInfoProducto()
+        onClickListener()
+        binding.toolBarFragment.title = producto?.nombre
         binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
-        binding.toolBarFragment.setNavigationOnClickListener {
 
+    }
+
+    private fun cargarInfoProducto() {
+        productoHttp.getFindId(idproducto).enqueue(
+            object: Callback<ProductoResponse> {
+                override fun onResponse(call: Call<ProductoResponse>, response: Response<ProductoResponse>) {
+                    if(response.isSuccessful) {
+                        response.body()?.let {
+                            producto = it
+                            Glide.with(requireView().context).load(it.imagen).into(binding.imgProducto);
+                            binding.nombreProducto.text = it.nombre
+                            binding.descripcionProducto.text = it.descripcion
+                            binding.precioProducto.text = "$ ${it.precio.toString()}"
+                            binding.descripcionLargaProducto.text = it.descripcion_larga
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<ProductoResponse>, t: Throwable) {
+                    Utility.displaySnackBar(
+                        requireView(),
+                        getString(R.string.msg_error_cargar_product),
+                        requireContext(),
+                        R.color.red
+                    )
+                }
+            }
+        )
+    }
+
+    private fun onClickListener() {
+        binding.toolBarFragment.setNavigationOnClickListener {
             if (it.id == -1) {
                 val action =
                     ProductDetailFragmentDirections.actionProductDetailFragmentToProductosCategoriaFragment(
@@ -63,34 +93,15 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
                 findNavController().navigate(action)
             }
         }
-
-        //ToolbarBasic().show((activity as AppCompatActivity?)!!, "Detalle Producto", false)
-        Glide.with(view.context).load(productoSeleccionado?.imagen).into(binding.imgProducto);
-        binding.nombreProducto.text = productoSeleccionado?.nombre
-        binding.descripcionProducto.text = productoSeleccionado?.descripcion
-        binding.precioProducto.text = "$ ${productoSeleccionado?.precio.toString()}"
-        binding.descripcionLargaProducto.text = productoSeleccionado?.descripcionLarga
         binding.buttonFinalizarCompra.setOnClickListener { finalizarCompra() }
-        binding.buttonAnadirCarrito.setOnClickListener { annadirCarrito(productoSeleccionado) }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(producto: Int, categoria: Int) =
-            ProductDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putInt("idProducto", producto)
-                    putInt("idCategoria", categoria)
-                }
+        binding.buttonAnadirCarrito.setOnClickListener {
+            producto?.let {
+                annadirCarrito(it)
             }
-
+        }
     }
 
-    private fun annadirCarrito(producto: Producto?) {
+    private fun annadirCarrito(producto: ProductoResponse) {
         DataBase.carrito.add(
             CarritoProducto(
                 Date().time,
@@ -114,9 +125,6 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
 
     private fun finalizarCompra() =
         findNavController().navigate(R.id.action_productDetailFragment_to_formaPagoFragment)
-
-    override fun onProductoClick(producto: Producto) =
-        annadirCarrito(producto)
 
 }
 

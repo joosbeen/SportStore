@@ -45,4 +45,7 @@
     <string name="id_cliente_web">744462903672-918e5dbtfkvthsgbpn1phe3rqbcdnth9.apps.googleusercontent.com</string>
     <string name="anadir_al_carrito">Añadir al carrito</string>
     <string name="finalizar_compra">Finalizar compra</string>
+    <string name="msg_error_cargar_categoria">Ocurrió un error al cargar la categoria.</string>
+    <string name="msg_error_cargar_producto">Ocurrió un error al cargar los productos.</string>
+    <string name="msg_error_cargar_product">Ocurrió un error al cargar el producto.</string>
 </resources>

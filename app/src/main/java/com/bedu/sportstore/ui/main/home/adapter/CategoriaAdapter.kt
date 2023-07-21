@@ -1,5 +1,7 @@
 package com.bedu.sportstore.ui.main.home.adapter
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +10,14 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bedu.sportstore.R
-import com.bedu.sportstore.model.Categoria
+import com.bedu.sportstore.model.response.CategoriaResponse
+import com.bumptech.glide.Glide
 
-class CategoriaAdapter(val categorias: MutableList<Categoria>, val oncategoriaClick: OnCategoriaClickListener) :
+class CategoriaAdapter(val categorias: List<CategoriaResponse>, val oncategoriaClick: OnCategoriaClickListener) :
     RecyclerView.Adapter<CategoriaAdapter.ViewHolder>() {
 
     interface OnCategoriaClickListener {
-        fun oncategoriaClick(categoria: Categoria)
+        fun oncategoriaClick(categoria: CategoriaResponse)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,20 +36,21 @@ class CategoriaAdapter(val categorias: MutableList<Categoria>, val oncategoriaCl
         holder.itemView.findViewById<CardView>(R.id.card_view).setOnClickListener {
             oncategoriaClick.oncategoriaClick(categoria)
         }
-
     }
-
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val title: TextView = view.findViewById(R.id.txtCategoryTitle)
-        val imagen: ImageView = view.findViewById(R.id.txtCategoryImage)
-        val redirect: TextView = view.findViewById(R.id.txtCategoryRedirect)
+        private val title: TextView = view.findViewById(R.id.txtCategoryTitle)
+        private val image: ImageView = view.findViewById(R.id.categoryImage)
+        private val context: Context = view.context
 
-        fun bind(item: Categoria) {
+        fun bind(item: CategoriaResponse) {
             title.text = item.nombre
-            imagen.setImageResource(item.imagen)
-            redirect.setOnClickListener { }
+            Glide.with(context).load(item.imagen).into(image)
+            Log.i("adaptercategory", "bind: $item")
+            Log.i("adaptercategory", "bind id: ${item.id}")
+            Log.i("adaptercategory", "bind nombre: ${item.nombre}")
+            Log.i("adaptercategory", "bind imagen: ${item.imagen}")
         }
 
     }

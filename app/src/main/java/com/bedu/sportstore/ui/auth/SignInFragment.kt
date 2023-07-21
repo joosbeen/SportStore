@@ -13,13 +13,9 @@ import com.bedu.sportstore.databinding.FragmentSignInBinding
 import com.bedu.sportstore.db.Usuario
 import com.bedu.sportstore.model.entity.PerfilEntity
 import com.bedu.sportstore.model.request.SigninVO
-import com.bedu.sportstore.repository.remote.SportStoreHttp
-import com.bedu.sportstore.model.response.AuthResponse
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
 import com.bedu.sportstore.ui.MainActivity
-import com.bedu.sportstore.ui.SportApplication
 import com.bedu.sportstore.utileria.Form
-import com.bedu.sportstore.utileria.TAGS
 import com.bedu.sportstore.utileria.UserSession
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -28,12 +24,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
@@ -111,42 +105,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                     }
                 }
             }
-
-        /*call.enqueue(object : Callback<AuthResponse> {
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-
-                if (response.isSuccessful) {
-                     val databaseRoom = AppDatabaseRoom.getDatabase(requireActivity())
-                     val perfilDao = databaseRoom.perfilDao()
-                    response.body()?.usuario?.let {
-                        lifecycleScope.launch {
-                            withContext(Dispatchers.IO) {
-                                perfilDao.insert(
-                                    PerfilEntity(it.id, it.nombre, it.correo, it.rol, "")
-                                )
-                            }
-                        }
-
-                        UserSession.user = Usuario(it.id, it.nombre, it.correo, "", it.rol)
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        intent.putExtra("usuario", response.body()?.usuario.toString())
-                        startActivity(intent)
-                        activity?.finish()
-                    }
-
-
-                } else {
-                    showSnackbar(getString(R.string.msg_error_login_invalid))
-                    Log.e(TAGS.ERROR, "onResponse: ${getString(R.string.msg_error_login_invalid)}")
-                }
-
-            }
-
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                showSnackbar(getString(R.string.msg_error_server))
-                Log.e(TAGS.ERROR, "onResponse: ${getString(R.string.msg_error_server)}")
-            }
-        })*/
 
     }
 

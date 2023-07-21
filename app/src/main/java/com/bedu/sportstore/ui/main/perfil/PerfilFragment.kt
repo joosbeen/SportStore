@@ -23,7 +23,6 @@ import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.entity.PerfilEntity
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
 import com.bedu.sportstore.ui.AuthActivity
-import com.bedu.sportstore.ui.MainActivity
 import com.bedu.sportstore.utileria.ImageFormat
 import com.bedu.sportstore.utileria.PermissionsManager
 import kotlinx.coroutines.Dispatchers
@@ -67,16 +66,12 @@ class PerfilFragment : Fragment(R.layout.fragment_perfil), PopupMenu.OnMenuItemC
     private fun setProfileData() {
         val databaseRoom = AppDatabaseRoom.getDatabase(requireContext())
         val perfilDao = databaseRoom.perfilDao()
-        val imgFormat = ImageFormat()
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 usuarios = perfilDao.getAll()
             }
             bdg.txtPerfiloutNombre.text = usuarios[0].nombre
             bdg.txtPerfiloutEmail.text = usuarios[0].correo
-            //usuarios[0].imagen?.let {
-                //bdg.imgPerfilUsario.setImageBitmap(imgFormat.ByteArrayToBitmap(it.encodeToByteArray()))
-            //}
             bdg.txtPerfiloutCompras.text =
                 DataBase.compras.filter { it.usuarioId == usuarios[0].uid }.size.toString()
         }

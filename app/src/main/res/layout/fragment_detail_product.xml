@@ -18,27 +18,27 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
         <ImageView
             android:id="@+id/imgProducto"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:background="@color/dark_light"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/tenis" />
+            app:srcCompat="@drawable/tenis"
+            tools:ignore="Suspicious0dp" />
 
         <TextView
             android:id="@+id/nombreProducto"
-            style="@style/pago_total"
+            style="@style/lbl_input"
             android:layout_width="225dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgProducto"
@@ -49,7 +49,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/nombreProducto"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -61,8 +60,7 @@
             android:id="@+id/descripcionProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +71,7 @@
             android:id="@+id/descripcionLargaProducto"
             android:layout_width="369dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descripcionProducto"
@@ -82,27 +80,27 @@
 
         <Button
             android:id="@+id/buttonAnadirCarrito"
-            style="@style/txt_btn_dark_primary"
             android:layout_width="369dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/btn_dark_primary"
+            android:layout_marginBottom="16dp"
             android:text="@string/anadir_al_carrito"
+            app:layout_constraintBottom_toTopOf="@+id/buttonFinalizarCompra"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descripcionLargaProducto" />
+            style="@style/txt_btn_dark_primary"
+            android:background="@drawable/btn_dark_primary" />
 
         <Button
             android:id="@+id/buttonFinalizarCompra"
-            style="@style/txt_btn_dark_primary"
             android:layout_width="369dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/btn_dark_primary"
+            android:layout_marginBottom="8dp"
             android:text="@string/finalizar_compra"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonAnadirCarrito" />
+            style="@style/txt_btn_dark_primary"
+            android:background="@drawable/btn_dark_primary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

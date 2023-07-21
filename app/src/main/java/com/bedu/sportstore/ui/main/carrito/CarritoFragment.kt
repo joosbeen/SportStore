@@ -3,7 +3,7 @@ package com.bedu.sportstore.ui.fragments.main
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentCarritoBinding
@@ -30,13 +30,6 @@ class CarritoFragment : Fragment(R.layout.fragment_carrito),
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCarritoBinding.bind(view)
         binding.toolBarFragment.title = getString(R.string.title_carrito_de_compra)
-        /*binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
-        binding.toolBarFragment.setNavigationOnClickListener {
-            if (it.id == -1) UtilFragment().replaceFragmetnMain(
-                requireActivity().supportFragmentManager,
-                Home()
-            )
-        }*/
         loadAdapter()
     }
 
@@ -62,13 +55,8 @@ class CarritoFragment : Fragment(R.layout.fragment_carrito),
     }
 
     private fun openFragmetnFormaPago() {
-        if (totalCosto>0) {
-            TODO("open Fragmetn Forma Pago")
-            /*requireActivity().supportFragmentManager.commit {
-                replace(R.id.frame_Layout, FormaPagoFragment())
-                addToBackStack("formaPagoFragment")
-            }*/
-        }
+        if (totalCosto > 0)
+            findNavController().navigate(R.id.action_carritoFragment_to_formaPagoFragment)
     }
 
     companion object {
@@ -82,12 +70,8 @@ class CarritoFragment : Fragment(R.layout.fragment_carrito),
     }
 
     override fun onCartProductoClick(carritoProducto: CarritoProducto) {
-
         val newCarrito = DataBase.carrito.filter { it.id != carritoProducto.id }
-
         DataBase.carrito = newCarrito as MutableList<CarritoProducto>
-
         loadAdapter()
-
     }
 }

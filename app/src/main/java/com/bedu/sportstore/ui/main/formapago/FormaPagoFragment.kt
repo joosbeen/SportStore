@@ -1,4 +1,4 @@
-package com.bedu.sportstore.ui.fragments.main
+package com.bedu.sportstore.ui.main.formapago
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,6 @@ import com.bedu.sportstore.db.Compra
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.utileria.Form
 import com.bedu.sportstore.utileria.UserSession
-import com.bedu.sportstore.utileria.UtilFragment
 import com.google.android.material.snackbar.Snackbar
 import java.util.Date
 
@@ -117,12 +116,7 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
 
         showMessage(R.string.compra_exitosa)
 
-        // Ir al fragment home
-        TODO("Ir al fragment home")
-        /*val fragmentManager = activity?.supportFragmentManager
-        val fragmentTransaction = fragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.frame_Layout, HomeFragment())
-        fragmentTransaction?.commit()*/
+        findNavController().navigate(R.id.action_formaPagoFragment_to_homeFragment)
 
     }
 

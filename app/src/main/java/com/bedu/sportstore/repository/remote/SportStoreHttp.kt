@@ -1,6 +1,8 @@
 package com.bedu.sportstore.repository.remote
 
 import com.bedu.sportstore.repository.remote.auth.AuthSportStoreService
+import com.bedu.sportstore.repository.remote.categoria.CategoriaService
+import com.bedu.sportstore.repository.remote.producto.ProductoService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -28,6 +30,8 @@ class SportStoreHttp {
             .build()
 
         fun authHttp(): AuthSportStoreService = retrofit.create(AuthSportStoreService::class.java)
+        fun categoriaHttp(): CategoriaService = retrofit.create(CategoriaService::class.java)
+        fun productoHttp(): ProductoService = retrofit.create(ProductoService::class.java)
 
     }
 }
