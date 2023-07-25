@@ -2,25 +2,30 @@ package com.bedu.sportstore.ui.main.productdetail
 
 import android.content.Intent
 import android.os.Build
-import java.util.Date
 
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bedu.sportstore.R
 import com.bedu.sportstore.core.broadcast.CartCounterReceiver
 import com.bedu.sportstore.databinding.FragmentDetailProductBinding
-import com.bedu.sportstore.db.CarritoProducto
-import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.Categoria
+import com.bedu.sportstore.model.entity.CarritoEntity
 import com.bedu.sportstore.model.response.ProductoResponse
+import com.bedu.sportstore.model.response.toProductoEntity
+import com.bedu.sportstore.repository.local.AppDatabaseRoom
+import com.bedu.sportstore.repository.local.DataBaseLocalViewModel
 import com.bedu.sportstore.repository.remote.SportStoreHttp
-import com.bedu.sportstore.utileria.UserSession
 import com.bedu.sportstore.utileria.Utility
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,6 +38,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product) {
     private var idcategoria: Int = 0
     private var idproducto: Int = 0
     private val productoHttp by lazy { SportStoreHttp.productoHttp() }
+    private val carritoDao by lazy { AppDatabaseRoom.getDatabase(requireContext()).carritoDao() }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,12 +63,16 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product) {
 
     private fun cargarInfoProducto() {
         productoHttp.getFindId(idproducto).enqueue(
-            object: Callback<ProductoResponse> {
-                override fun onResponse(call: Call<ProductoResponse>, response: Response<ProductoResponse>) {
-                    if(response.isSuccessful) {
+            object : Callback<ProductoResponse> {
+                override fun onResponse(
+                    call: Call<ProductoResponse>,
+                    response: Response<ProductoResponse>
+                ) {
+                    if (response.isSuccessful) {
                         response.body()?.let {
                             producto = it
-                            Glide.with(requireView().context).load(it.imagen).into(binding.imgProducto);
+                            Glide.with(requireView().context).load(it.imagen)
+                                .into(binding.imgProducto);
                             binding.nombreProducto.text = it.nombre
                             binding.descripcionProducto.text = it.descripcion
                             binding.precioProducto.text = "$ ${it.precio.toString()}"
@@ -70,6 +80,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product) {
                         }
                     }
                 }
+
                 override fun onFailure(call: Call<ProductoResponse>, t: Throwable) {
                     Utility.displaySnackBar(
                         requireView(),
@@ -102,20 +113,18 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product) {
     }
 
     private fun annadirCarrito(producto: ProductoResponse) {
-        DataBase.carrito.add(
-            CarritoProducto(
-                Date().time,
-                producto?.id ?: 0,
-                UserSession.user?.id ?: 0
-            )
-        )
-        view?.let {
-            Snackbar.make(
-                it,
-                "Se agrego al carrito", Snackbar.LENGTH_SHORT
-            ).show()
-        }
 
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                carritoDao.insert(producto.toProductoEntity())
+                view?.let {
+                    Snackbar.make(
+                        it,
+                        "Se agrego al carrito", Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
         // #### AppComponent
         // #### Envía un broadcast para notificar al BroadcastReceiver
         // ####

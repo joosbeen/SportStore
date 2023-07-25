@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bedu.sportstore.R
 import com.bedu.sportstore.db.CarritoProducto
 import com.bedu.sportstore.db.DataBase
+import com.bedu.sportstore.model.entity.CarritoEntity
 import com.bumptech.glide.Glide
 
 class CarritoAdapter(
-    private val carritoss: List<CarritoProducto>,
+    private val carritoss: List<CarritoEntity>,
     private val onProductoClick: OnCartProductoClickListener
 ) : RecyclerView.Adapter<CarritoAdapter.ViewHolder>() {
 
     interface OnCartProductoClickListener {
-        fun onCartProductoClick(carritoProducto: CarritoProducto)
+        fun onCartProductoClick(carrito: CarritoEntity)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -48,16 +49,13 @@ class CarritoAdapter(
         private val cartPrecioProducto: TextView = view.findViewById(R.id.cartPrecioProducto)
         private val context: Context = view.context
 
-        fun bind(cart: CarritoProducto) {
-
-            val producto = DataBase.productos.find { it.id == cart.productoId }
-
-            cartNombreProducto.text = producto?.nombre
-            cartDescripcionProducto.text = producto?.descripcion
+        fun bind(cart: CarritoEntity) {
+            //val producto = DataBase.productos.find { it.id == cart.productoId }
+            cartNombreProducto.text = cart?.nombre
+            cartDescripcionProducto.text = cart?.descripcion
             cartTallaColorProducto.text = "Talla: M"
-            cartPrecioProducto.text = "$ ${producto?.precio} MXN"
-
-            Glide.with(context).load(producto?.imagen).into(cartImagenProducto);
+            cartPrecioProducto.text = "$ ${cart?.precio} MXN"
+            Glide.with(context).load(cart?.imagen).into(cartImagenProducto);
         }
 
     }
