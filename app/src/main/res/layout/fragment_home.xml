@@ -19,7 +19,7 @@
         app:theme="@style/ToolbarTheme" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listCarories"
+        android:id="@+id/listCategories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"

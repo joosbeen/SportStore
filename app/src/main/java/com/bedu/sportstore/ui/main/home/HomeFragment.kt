@@ -25,8 +25,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), CategoriaAdapter.OnCatego
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
-        binding.listCarories.setHasFixedSize(true)
-        binding.listCarories.layoutManager = LinearLayoutManager(view.context)
+        binding.listCategories.setHasFixedSize(true)
+        binding.listCategories.layoutManager = LinearLayoutManager(view.context)
         cargarCategorias()
     }
 
@@ -35,7 +35,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CategoriaAdapter.OnCatego
             override fun onResponse(call: Call<List<CategoriaResponse>>, response: Response<List<CategoriaResponse>>) {
                 if (response.isSuccessful) {
                     response.body()?.let { categorias ->
-                        binding.listCarories.adapter = CategoriaAdapter(categorias, this@HomeFragment)
+                        binding.listCategories.adapter = CategoriaAdapter(categorias, this@HomeFragment)
                     }
                 }
             }

@@ -23,7 +23,7 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
     private lateinit var binding: FragmentProductosCategoriaBinding
     private var idCategoria: Int? = null
     private var nombreCategoria: String? = null
-    private var categoria = Categoria()
+    //private var categoria = Categoria()
     private val productoHttp by lazy { SportStoreHttp.productoHttp() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProductosCategoriaBinding.bind(view)
 
-        categoria = DataBase.categorias.find { it.id == idCategoria } ?: Categoria()
+        //categoria = DataBase.categorias.find { it.id == idCategoria } ?: Categoria()
         binding.toolBarFragment.title = nombreCategoria?.uppercase()
 
         binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back)
@@ -49,6 +49,11 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
         binding.rvProductosCategoria.setHasFixedSize(true)
         binding.rvProductosCategoria.layoutManager = LinearLayoutManager(view.context)
 
+        cargarCateogrias()
+
+    }
+
+    private fun cargarCateogrias() {
         productoHttp.getFindCategory(idCategoria!!).enqueue(
             object : Callback<List<ProductoResponse>> {
                 override fun onResponse(
@@ -65,7 +70,7 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
 
                 override fun onFailure(call: Call<List<ProductoResponse>>, t: Throwable) {
                     Utility.displaySnackBar(
-                        view,
+                        requireView(),
                         getString(R.string.msg_error_cargar_producto),
                         requireContext(),
                         R.color.red
@@ -73,8 +78,6 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
                 }
             }
         )
-
-
     }
 
     override fun onProductoClick(producto: ProductoResponse) {

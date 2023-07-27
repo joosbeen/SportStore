@@ -38,7 +38,7 @@ class CategoriaAdapter(val categorias: List<CategoriaResponse>, val oncategoriaC
         }
     }
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val title: TextView = view.findViewById(R.id.txtCategoryTitle)
         private val categoryImage: ImageView = view.findViewById(R.id.categoryImage)
