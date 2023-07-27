@@ -1,4 +1,4 @@
-package com.bedu.sportstore.ui.adapters
+package com.bedu.sportstore.ui.main.historial_compra.adapter
 
 import android.view.LayoutInflater
 import android.view.View

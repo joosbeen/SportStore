@@ -1,4 +1,4 @@
-package com.bedu.sportstore.ui.fragments.main
+package com.bedu.sportstore.ui.main.carrito
 
 import android.os.Bundle
 import android.view.View
@@ -8,12 +8,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentCarritoBinding
-import com.bedu.sportstore.db.CarritoProducto
-import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.entity.CarritoEntity
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
-import com.bedu.sportstore.ui.adapters.CarritoAdapter
-import com.bedu.sportstore.utileria.UserSession
+import com.bedu.sportstore.ui.main.carrito.adapter.CarritoAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -59,14 +56,6 @@ class CarritoFragment : Fragment(R.layout.fragment_carrito),
                 }
             }
         }
-        /**
-        val carrito = DataBase.carrito.filter { it.usuarioId == UserSession.user?.id }
-        totalCosto = 0f
-        carrito.forEach { cp ->
-            val prod = DataBase.productos.find { p -> p.id == cp.productoId }
-            totalCosto += ((prod?.precio ?: 0) as Float)
-        }
-        */
 
     }
 
@@ -86,9 +75,6 @@ class CarritoFragment : Fragment(R.layout.fragment_carrito),
     }
 
     override fun onCartProductoClick(carrito: CarritoEntity) {
-        //val newCarrito = DataBase.carrito.filter { it.id != carritoProducto.id }
-        //DataBase.carrito = newCarrito as MutableList<CarritoProducto>
-
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 carritoDao.delete(carrito)

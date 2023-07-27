@@ -1,7 +1,6 @@
 package com.bedu.sportstore.ui.main.home.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,10 +46,6 @@ class CategoriaAdapter(val categorias: List<CategoriaResponse>, val oncategoriaC
         fun bind(item: CategoriaResponse) {
             title.text = item.nombre
             Glide.with(context).load(item.imagen).into(image)
-            Log.i("adaptercategory", "bind: $item")
-            Log.i("adaptercategory", "bind id: ${item.id}")
-            Log.i("adaptercategory", "bind nombre: ${item.nombre}")
-            Log.i("adaptercategory", "bind imagen: ${item.imagen}")
         }
 
     }

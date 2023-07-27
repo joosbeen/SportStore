@@ -2,7 +2,6 @@ package com.bedu.sportstore.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -24,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -92,14 +90,12 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         auth.signInWithEmailAndPassword(correo, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     user?.let {
                         createSession(user.uid, "", correo)
                         searchUserbuUid(user.uid)
                     }
                 } else {
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
                     task.exception?.let { e ->
                         e.message?.let { showSnackbar(it) }
                     }
@@ -120,11 +116,9 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             if (task.isSuccessful) {
                 for (document in task.result) {
                     val data = document.data
-                    Log.i(TAG, "searchUserbuUid: Login success: $data")
                 }
             } else {
                 val exception = task.exception
-                Log.w(TAG, "searchUserbuUid: exeption: ${exception?.message}", )
             }
         }
 

@@ -13,16 +13,13 @@ import com.bedu.sportstore.R
 import com.bedu.sportstore.core.broadcast.CartCounterReceiver
 import com.bedu.sportstore.databinding.FragmentDetailProductBinding
 import com.bedu.sportstore.model.Categoria
-import com.bedu.sportstore.model.entity.CarritoEntity
 import com.bedu.sportstore.model.response.ProductoResponse
 import com.bedu.sportstore.model.response.toProductoEntity
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
-import com.bedu.sportstore.repository.local.DataBaseLocalViewModel
 import com.bedu.sportstore.repository.remote.SportStoreHttp
 import com.bedu.sportstore.utileria.Utility
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -57,7 +54,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product) {
         cargarInfoProducto()
         onClickListener()
         binding.toolBarFragment.title = producto?.nombre
-        binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
+        binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back)
 
     }
 

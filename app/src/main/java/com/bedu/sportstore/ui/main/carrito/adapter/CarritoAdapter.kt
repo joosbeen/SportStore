@@ -1,4 +1,4 @@
-package com.bedu.sportstore.ui.adapters
+package com.bedu.sportstore.ui.main.carrito.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,8 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bedu.sportstore.R
-import com.bedu.sportstore.db.CarritoProducto
-import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.entity.CarritoEntity
 import com.bumptech.glide.Glide
 
@@ -50,7 +48,6 @@ class CarritoAdapter(
         private val context: Context = view.context
 
         fun bind(cart: CarritoEntity) {
-            //val producto = DataBase.productos.find { it.id == cart.productoId }
             cartNombreProducto.text = cart?.nombre
             cartDescripcionProducto.text = cart?.descripcion
             cartTallaColorProducto.text = "Talla: M"

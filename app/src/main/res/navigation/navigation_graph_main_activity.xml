@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/carritoFragment"
-        android:name="com.bedu.sportstore.ui.fragments.main.CarritoFragment"
+        android:name="com.bedu.sportstore.ui.main.carrito.CarritoFragment"
         android:label="fragment_carrito"
         tools:layout="@layout/fragment_carrito" >
         <action

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentHistorialComprasBinding
 import com.bedu.sportstore.db.DataBase
-import com.bedu.sportstore.ui.adapters.HistorialCompraAdapter
+import com.bedu.sportstore.ui.main.historial_compra.adapter.HistorialCompraAdapter
 import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.UserSession
 

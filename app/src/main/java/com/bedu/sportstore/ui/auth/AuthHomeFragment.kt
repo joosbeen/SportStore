@@ -2,7 +2,6 @@ package com.bedu.sportstore.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -69,11 +68,9 @@ class AuthHomeFragment : Fragment(R.layout.fragment_auth_home) {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)!!
-                Log.d(TAG_NAME, "firebaseAuthWithGoogle:" + account.id)
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                Log.w(TAG_NAME, "Google sign in failed", e)
                 Utility.displaySnackBar(binding.root, "Google sign in failed", requireContext(), R.color.red)
             }
         }
@@ -85,12 +82,10 @@ class AuthHomeFragment : Fragment(R.layout.fragment_auth_home) {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG_NAME, "signInWithCredential:success")
                     val user = auth.currentUser
                     updateUI(user, null)
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w(TAG_NAME, "signInWithCredential:failure", task.exception)
                     updateUI(null, task.exception)
                 }
             }

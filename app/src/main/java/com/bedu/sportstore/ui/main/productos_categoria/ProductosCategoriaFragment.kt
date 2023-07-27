@@ -9,7 +9,6 @@ import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentProductosCategoriaBinding
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.Categoria
-import com.bedu.sportstore.model.Producto
 import com.bedu.sportstore.model.response.ProductoResponse
 import com.bedu.sportstore.repository.remote.SportStoreHttp
 import com.bedu.sportstore.ui.main.productos_categoria.adapter.ProductoCategoriaAdapter
@@ -42,7 +41,7 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
         categoria = DataBase.categorias.find { it.id == idCategoria } ?: Categoria()
         binding.toolBarFragment.title = nombreCategoria?.uppercase()
 
-        binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
+        binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.toolBarFragment.setNavigationOnClickListener {
             if (it.id == -1) findNavController().navigate(R.id.action_productosCategoriaFragment_to_homeFragment)
         }
@@ -85,13 +84,6 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
                 producto.categoria_id
             )
         findNavController().navigate(action)
-        /*parentFragmentManager.commit {
-            replace(
-                R.id.frame_Layout,
-                ProductDetailFragment.newInstance(producto.id, idCategoria ?: 0)
-            )
-        }*/
-
     }
 
     companion object {

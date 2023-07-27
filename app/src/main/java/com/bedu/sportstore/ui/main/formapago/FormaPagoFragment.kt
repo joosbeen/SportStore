@@ -24,7 +24,7 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFormaPagoBinding.bind(view)
         binding.toolBarFragment.title = getString(R.string.title_detalles_del_pago)
-        binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
+        binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.toolBarFragment.setNavigationOnClickListener {
 
             if (it.id == -1)
@@ -118,10 +118,6 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
 
         findNavController().navigate(R.id.action_formaPagoFragment_to_homeFragment)
 
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
     }
 
     private fun showMessage(msg: Int) {
