@@ -26,6 +26,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Locale
 
 class ProductDetailFragment : Fragment(R.layout.fragment_detail_product) {
 
@@ -53,7 +54,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product) {
 
         cargarInfoProducto()
         onClickListener()
-        binding.toolBarFragment.title = producto?.nombre
+        binding.toolBarFragment.title = "Detalle del producto"
         binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back)
 
     }
@@ -70,8 +71,8 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product) {
                             producto = it
                             Glide.with(requireView().context).load(it.imagen)
                                 .into(binding.imgProducto);
-                            binding.nombreProducto.text = it.nombre
-                            binding.descripcionProducto.text = it.descripcion
+                            binding.nombreProducto.text = it.nombre.capitalize()
+                            binding.descripcionProducto.text = it.descripcion.capitalize()
                             binding.precioProducto.text = "$ ${it.precio.toString()}"
                             binding.descripcionLargaProducto.text = it.descripcion_larga
                         }

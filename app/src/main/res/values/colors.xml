@@ -8,11 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- Sport Store -->
     <color name="dark_primary">#171717</color>
-    <color name="dark_secondary">#8b8b8b</color>
+    <color name="dark_secondary">#27374D</color>
     <color name="dark_bg_li">#F7F7F7</color>
     <color name="dark_light">#E9E9E9</color>
-
     <color name="red">#c90606</color>
     <color name="green">#008000</color>
+    <color name="secondary">#526D82</color>
+    <color name="secondary_variant">#9DB2BF</color>
+    <color name="secondary_on_secondary">#DDE6ED</color>
+
 </resources>

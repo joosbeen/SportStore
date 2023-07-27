@@ -1,6 +1,7 @@
 package com.bedu.sportstore.ui.main.productos_categoria.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,9 +50,10 @@ class ProductoCategoriaAdapter(
         private val context: Context = view.context
 
         fun bind(producto: ProductoResponse) {
+            Log.i("productoadapter", "bind: $producto")
             nombreProducto.text = producto.nombre
-            precioProducto.text = "$ ${producto.precio.toString()} MXN"
-            descripcionProducto.text = producto.descripcion
+            precioProducto.text = "$ ${producto.precio} MXN"
+            descripcionProducto.text = producto.descripcion.capitalize()
             Glide.with(context).load(producto.imagen).into(imgProducto)
         }
 

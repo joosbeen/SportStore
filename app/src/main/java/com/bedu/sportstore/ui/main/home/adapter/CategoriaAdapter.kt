@@ -1,6 +1,7 @@
 package com.bedu.sportstore.ui.main.home.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,12 +41,13 @@ class CategoriaAdapter(val categorias: List<CategoriaResponse>, val oncategoriaC
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val title: TextView = view.findViewById(R.id.txtCategoryTitle)
-        private val image: ImageView = view.findViewById(R.id.categoryImage)
+        private val categoryImage: ImageView = view.findViewById(R.id.categoryImage)
         private val context: Context = view.context
 
         fun bind(item: CategoriaResponse) {
+            Log.i("categoriaadapter", "bind: $item")
             title.text = item.nombre
-            Glide.with(context).load(item.imagen).into(image)
+            Glide.with(context).load(item.imagen).into(categoryImage)
         }
 
     }
