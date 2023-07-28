@@ -18,6 +18,7 @@ data class ProductoResponse(
 
 fun ProductoResponse.toProductoEntity(): CarritoEntity {
     return CarritoEntity(
+        null,
         this.id,
         this.nombre,
         this.descripcion,

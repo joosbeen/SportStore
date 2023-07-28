@@ -3,15 +3,24 @@ package com.bedu.sportstore.ui.main.formapago
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentFormaPagoBinding
-import com.bedu.sportstore.db.CarritoProducto
-import com.bedu.sportstore.db.Compra
-import com.bedu.sportstore.db.DataBase
+import com.bedu.sportstore.model.entity.CarritoEntity
+import com.bedu.sportstore.repository.local.AppDatabaseRoom
+import com.bedu.sportstore.repository.remote.firebase.CompraCollection
+import com.bedu.sportstore.repository.remote.firebase.CompraDetalle
+import com.bedu.sportstore.repository.remote.firebase.CompraDetalleReference
+import com.bedu.sportstore.repository.remote.firebase.CompraReference
 import com.bedu.sportstore.utileria.Form
-import com.bedu.sportstore.utileria.UserSession
+import com.bedu.sportstore.utileria.Utility
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Date
 
 class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
@@ -19,32 +28,50 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
     private lateinit var binding: FragmentFormaPagoBinding
     private var costoSubtotal = 0f
     private var costoEnvio = 50f
+    private var carrito: List<CarritoEntity> = listOf()
+    private val carritoDao by lazy { AppDatabaseRoom.getDatabase(requireContext()).carritoDao() }
+    private val fbTblCompra = CompraReference()
+    private val fbTblComprasDetalle = CompraDetalleReference()
+    private lateinit var itemHistorialComprasFragment: View
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFormaPagoBinding.bind(view)
+
         binding.toolBarFragment.title = getString(R.string.title_detalles_del_pago)
         binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.toolBarFragment.setNavigationOnClickListener {
-
             if (it.id == -1)
                 findNavController().navigate(R.id.action_formaPagoFragment_to_carritoFragment)
-
         }
 
         binding.fpBtnPagar.setOnClickListener { validarDatosTarjeta() }
 
-        val carrito = DataBase.carrito.filter { it.usuarioId == UserSession.user?.id }
-        carrito.forEach {
-            val prod = DataBase.productos.find { p -> p.id == it.productoId }
-            costoSubtotal += prod?.precio ?: 0f
-        }
+        calcularSubtotal()
 
-        binding.fpCostoSubtotal.text = "$ ${costoSubtotal} MXN"
         binding.fpCostoEnvio.text = "$ ${costoEnvio} MXN"
-        binding.fpCostoTotal.text = "$${costoSubtotal + costoEnvio} MXN"
-        binding.fpBtnPagar.text = "PAGAR $${costoSubtotal + costoEnvio} MXN"
 
+        val bottomNavigationView =
+            activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        itemHistorialComprasFragment =
+            bottomNavigationView?.findViewById(R.id.historialComprasFragment)!!
+
+
+    }
+
+    private fun calcularSubtotal() {
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                carrito = carritoDao.getAll()
+                carrito.forEach {
+                    costoSubtotal += it.precio
+                }
+                binding.fpCostoSubtotal.text = "$ ${costoSubtotal} MXN"
+                binding.fpCostoTotal.text = "$${costoSubtotal + costoEnvio} MXN"
+                binding.fpBtnPagar.text = "PAGAR $${costoSubtotal + costoEnvio} MXN"
+            }
+        }
 
     }
 
@@ -99,26 +126,66 @@ class FormaPagoFragment : Fragment(R.layout.fragment_forma_pago) {
 
     private fun guardarCompra() {
 
-        // Crear nueva compra
-        val date = Date()
-        val compra = Compra(
-            "${date.time}",
-            "${date.date}/${date.month}/${date.year}",
-            "Pendiente",
-            (costoSubtotal + costoEnvio),
-            UserSession.user?.id ?: 0
-        )
-        DataBase.compras.add(compra)
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            fbTblCompra.create(
+                CompraCollection(
+                    folio = Date().time,
+                    usuario = user.uid,
+                    subtotal = costoSubtotal,
+                    envio = costoEnvio,
+                    productos = carrito,
+                    estado = "Pendiente"
+                )
+            ) { resource ->
+                if (resource.isSuccessful) {
+                    resource.documentReference?.id?.let { idDocument ->
+                        //guardarProductosFirebase(idDocument)
+                        limpiarCarrito()
+                    }
+                } else {
+                    Utility.displaySnackBar(
+                        requireView(),
+                        getString(R.string.msg_error_register_compra),
+                        requireContext(),
+                        R.color.red
+                    )
+                }
+            }
 
-        // Limpiar Carrito
-        val carrito = DataBase.carrito.filter { it.usuarioId != UserSession.user?.id }
-        DataBase.carrito = carrito as MutableList<CarritoProducto>
-
-        showMessage(R.string.compra_exitosa)
-
-        findNavController().navigate(R.id.action_formaPagoFragment_to_homeFragment)
+        }
 
     }
+
+    private fun guardarProductosFirebase(uid: String) {
+
+        val compraDetalle = CompraDetalle(compra = uid, productos = carrito)
+
+        fbTblComprasDetalle.create(compraDetalle) { resource ->
+            if (resource.isSuccessful) {
+                limpiarCarrito()
+            } else {
+                Utility.displaySnackBar(
+                    requireView(),
+                    getString(R.string.msg_error_register_compra),
+                    requireContext(),
+                    R.color.red
+                )
+            }
+        }
+
+    }
+
+    private fun limpiarCarrito() {
+        lifecycleScope.launch {
+            withContext(Dispatchers.Main) {
+                carrito.forEach {
+                    carritoDao.delete(it)
+                }
+                itemHistorialComprasFragment?.performClick()
+            }
+        }
+    }
+
 
     private fun showMessage(msg: Int) {
         view?.let {

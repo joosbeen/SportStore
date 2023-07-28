@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         // config crashlitycs set id user
         auth.currentUser?.uid?.let { FirebaseCrashlytics.getInstance().setUserId(it) }
 
+        /*
         if (DataBase.productos.size > 0) {
             val index = Random.nextInt(0, DataBase.productos.size)
             val producto = DataBase.productos[index]
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             val message = "${producto.nombre} / $${producto.precio}"
             showNotification(this, title, message)
         }
+        */
 
     }
 

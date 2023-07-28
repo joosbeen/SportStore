@@ -33,8 +33,10 @@ class CarritoFragment : Fragment(R.layout.fragment_carrito),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCarritoBinding.bind(view)
-        binding.toolBarFragment.title = getString(R.string.title_carrito_de_compra)
+
         loadAdapter()
+        binding.toolBarFragment.title = getString(R.string.title_carrito_de_compra)
+        binding.cartBtnFinalizarCompra.setOnClickListener { openFragmetnFormaPago() }
     }
 
     private fun loadAdapter() {
@@ -45,12 +47,11 @@ class CarritoFragment : Fragment(R.layout.fragment_carrito),
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 val carrito = carritoDao.getAll()
-
                 binding.cartRVContent.adapter = CarritoAdapter(carrito, this@CarritoFragment)
-
+                carrito.forEach {
+                    totalCosto += it.precio
+                }
                 binding.cartTotalCosto.text = "$ ${totalCosto} MXN"
-                binding.cartBtnFinalizarCompra.setOnClickListener { openFragmetnFormaPago() }
-
                 if (carrito.isEmpty()) {
                     binding.cartBtnFinalizarCompra.text = "Carrito Vacio"
                 }

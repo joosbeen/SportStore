@@ -10,6 +10,7 @@ import com.bedu.sportstore.model.response.ProductoResponse
 @Entity
 data class CarritoEntity(
     @PrimaryKey(autoGenerate = true)
+    val uid: Int? = null,
     val id: Int = 0,
     val nombre: String = "",
     val descripcion: String = "",

@@ -48,4 +48,7 @@
     <string name="msg_error_cargar_categoria">Ocurrió un error al cargar la categoria.</string>
     <string name="msg_error_cargar_producto">Ocurrió un error al cargar los productos.</string>
     <string name="msg_error_cargar_product">Ocurrió un error al cargar el producto.</string>
+    <string name="msg_error_register_compra">Ocurrió un error al registrar la compra.</string>
+    <string name="msg_success_register_compra">Compra exitosa.</string>
+    <string name="msg_error_cargar_histotial_compras">Ocurrió un error al cargar el historial de compras</string>
 </resources>

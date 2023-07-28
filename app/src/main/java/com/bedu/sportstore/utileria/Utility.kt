@@ -8,13 +8,14 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.bedu.sportstore.R
 import com.google.android.material.snackbar.Snackbar
+import java.util.Date
 
 object Utility {
 
     //display SnackBar
-    fun displaySnackBar(view: View, s: String, context: Context, @ColorRes colorRes: Int) {
+    fun displaySnackBar(view: View, s: String, context: Context, @ColorRes colorRes: Int = R.color.green, length: Int = Snackbar.LENGTH_SHORT) {
 
-        Snackbar.make(view, s, Snackbar.LENGTH_LONG)
+        Snackbar.make(view, s, length)
             .withColor(ContextCompat.getColor(context, colorRes))
             .setTextColor(ContextCompat.getColor(context, R.color.white))
             .show()
@@ -30,4 +31,13 @@ object Utility {
         this.view.setBackgroundColor(colorInt)
         return this
     }
+
+    fun getDate_ddMMYYYY(date: Date): String {
+        return "${validDayAndMonth(date.date)}/${validDayAndMonth(date.month+1)}/${date.year}"
+    }
+
+    private fun validDayAndMonth(valid: Int): String {
+        return if (valid<10) "0${valid}" else "$valid"
+    }
+
 }

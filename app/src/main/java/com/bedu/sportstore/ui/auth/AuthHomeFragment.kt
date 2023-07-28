@@ -47,10 +47,10 @@ class AuthHomeFragment : Fragment(R.layout.fragment_auth_home) {
     }
 
     private fun onClickBtnSignipGoogle() {
-        binding.btnSigninGoogle.setOnClickListener {
+        /*binding.btnSigninGoogle.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, RC_SIGN_IN)
-        }
+        }*/
     }
 
     private fun onClickChangeFragment(id: Int) {
@@ -104,7 +104,7 @@ class AuthHomeFragment : Fragment(R.layout.fragment_auth_home) {
     private fun visibilityButtons(visibility: Boolean) {
         val isShowBtns = if(visibility) View.VISIBLE else View.GONE
         val isShowProgress = if(!visibility) View.VISIBLE else View.GONE
-        binding.btnSigninGoogle.visibility = isShowBtns
+        //binding.btnSigninGoogle.visibility = isShowBtns
         binding.authHomeBtnSignup.visibility = isShowBtns
         binding.authHomeBtnSignin.visibility = isShowBtns
         binding.loadingProgressBar.visibility = isShowProgress

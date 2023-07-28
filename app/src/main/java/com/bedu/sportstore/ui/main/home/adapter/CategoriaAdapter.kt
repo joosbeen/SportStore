@@ -45,7 +45,6 @@ class CategoriaAdapter(val categorias: List<CategoriaResponse>, val oncategoriaC
         private val context: Context = view.context
 
         fun bind(item: CategoriaResponse) {
-            Log.i("categoriaadapter", "bind: $item")
             title.text = item.nombre
             Glide.with(context).load(item.imagen).into(categoryImage)
         }
