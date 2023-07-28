@@ -38,7 +38,7 @@
                     style="@style/lbl_out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000000001" />
+                    android:text="@string/folio" />
 
             </LinearLayout>
 
@@ -52,7 +52,7 @@
                     style="@style/lbl_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="$ 220 MXN"
+                    android:text="@string/doscientos_veinte"
                     android:textAlignment="textEnd" />
 
             </LinearLayout>
@@ -82,7 +82,7 @@
                     style="@style/lbl_out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12/12/12" />
+                    android:text="@string/doce_doce" />
 
             </LinearLayout>
 
@@ -102,7 +102,7 @@
                     style="@style/lbl_out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Entregado" />
+                    android:text="@string/entregado" />
 
             </LinearLayout>
         </LinearLayout>

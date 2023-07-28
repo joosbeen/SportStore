@@ -42,7 +42,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgProducto"
-            tools:text="TENIS NIKE AIR MAX" />
+            tools:text="@string/tenis_nike_air_max" />
 
         <TextView
             android:id="@+id/precioProducto"
@@ -55,7 +55,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintTop_toBottomOf="@+id/imgProducto"
             app:layout_constraintVertical_bias="0.0"
-            tools:text="$ 2,399.00" />
+            tools:text="@string/dos_mil_trescientos_noventa_y_nueve" />
 
         <TextView
             android:id="@+id/descripcionProducto"
@@ -66,7 +66,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nombreProducto"
-            tools:text="Para hombre  Original" />
+            tools:text="@string/para_hombre_original" />
 
         <TextView
             android:id="@+id/descripcionLargaProducto"
@@ -76,8 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descripcionProducto"
-            tools:text="Clásicos tenis de correr, con un diseño de corte bajo. Más que un calzado, es una declaración de estilo. Los Nike Air
-            Max llegaron a la escena en el 87 y ganarón seguidores en el mundo." />
+            tools:text="@string/clasicos_tenis_descripcion" />
 
         <Button
             android:id="@+id/buttonAnadirCarrito"

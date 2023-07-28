@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="example@gmail.com"
+        android:hint="@string/example_email"
         android:text=""
         android:inputType="textEmailAddress"
         android:background="@drawable/edit_text_primary"/>
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Contraseña"
+        android:hint="@string/contrasena"
         android:text=""
         android:inputType="textPassword"
         android:background="@drawable/edit_text_primary" />
@@ -62,6 +62,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="¿No tiene una cuenta? Regístrese"/>
+        android:text="@string/no_tiene_cuenta"/>
 
 </LinearLayout>

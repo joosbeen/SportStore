@@ -40,14 +40,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Sin Compras"
+            android:text="@string/sin_compras"
             android:textAlignment="center"
             android:textSize="24dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Realice su primera compra"
+            android:text="@string/realice_su_primera_compra"
             android:textAlignment="center" />
 
     </LinearLayout>

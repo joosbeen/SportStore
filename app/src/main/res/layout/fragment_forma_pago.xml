@@ -109,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="SUBTOTAL"
+        android:text="@string/subtotal"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -131,7 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:text="ENVIO"
+        android:text="@string/envio"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -164,7 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginStart="8dp"
-        android:text="TOTAL"
+        android:text="@string/total"
         app:layout_constraintBottom_toTopOf="@+id/fpBtnPagar"
         app:layout_constraintStart_toStartOf="parent" />
 
