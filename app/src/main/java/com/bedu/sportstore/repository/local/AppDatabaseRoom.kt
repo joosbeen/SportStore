@@ -4,17 +4,27 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.bedu.sportstore.model.entity.CarritoEntity
+import com.bedu.sportstore.model.entity.CategoriaEntity
 import com.bedu.sportstore.model.entity.PerfilEntity
+import com.bedu.sportstore.model.entity.ProductoEntity
 
 @Database(
     entities = [
-        PerfilEntity::class
+        PerfilEntity::class,
+        ProductoEntity::class,
+        CategoriaEntity::class,
+        CarritoEntity::class
     ],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class AppDatabaseRoom : RoomDatabase() {
 
     abstract fun perfilDao(): PerfilDao
+    abstract fun productoDao(): ProductoDao
+    abstract fun categoriaDao(): CategoriaDao
+    abstract fun carritoDao(): CarritoDao
 
     companion object {
 

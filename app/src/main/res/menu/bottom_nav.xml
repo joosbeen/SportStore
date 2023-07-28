@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Home"
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/baseline_home_24"/>
     <item android:title="Compras"
-       android:id="@+id/search"
+       android:id="@+id/historialComprasFragment"
         android:icon="@drawable/baseline_manage_search_24"/>
     <item android:title="Car"
-        android:id="@+id/car"
+        android:id="@+id/carritoFragment"
         android:icon="@drawable/baseline_shopping_cart_24"/>
     <item android:title="@string/usuario"
-        android:id="@+id/settings"
+        android:id="@+id/perfilFragment"
         android:icon="@drawable/baseline_person_24"/>
 
 </menu>

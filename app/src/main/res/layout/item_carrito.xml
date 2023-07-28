@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp">
 
-
         <ImageView
             android:id="@+id/cartImagenProducto"
             android:layout_width="112dp"
@@ -34,7 +33,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.35" />
 
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
             android:layout_width="wrap_content"
@@ -51,12 +49,11 @@
             app:layout_constraintStart_toEndOf="@+id/cartImagenProducto"
             app:layout_constraintTop_toTopOf="@+id/cartImagenProducto">
 
-
             <TextView
                 android:id="@+id/cartNombreProducto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TENIS NIKE AIR MAX"
+                android:text="@string/tenis_nike_air_max"
                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/cartImagenProducto"
@@ -67,21 +64,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Para hombre  Original" />
+                android:text="@string/para_hombre_original" />
 
             <TextView
                 android:id="@+id/cartTallaColorProducto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Talla: 25 cm" />
+                android:text="@string/talla_veinticinco" />
 
             <TextView
                 android:id="@+id/cartPrecioProducto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="$2,399.00 MXM" />
+                android:text="@string/dos_mil_trescientos_noventa_y_nueve" />
         </LinearLayout>
 
         <LinearLayout
@@ -99,9 +96,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_delete" />
 
-
         </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -51,13 +51,10 @@ class ProductDetailAdapter(
         private val context: Context = view.context
 
         fun bind(producto: Producto) {
-
             nombreProducto.text = producto.nombre
             precioProducto.text = "$ ${producto.precio.toString()} MXN"
             descripcionProducto.text = producto.descripcion
-
-            Glide.with(context).load(producto.imagen).into(imgProducto);
-
+            Glide.with(context).load(producto.imagen).into(imgProducto)
         }
     }
 

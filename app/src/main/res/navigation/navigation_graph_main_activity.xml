@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph_main_activity"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/carritoFragment"
+        android:name="com.bedu.sportstore.ui.main.carrito.CarritoFragment"
+        android:label="fragment_carrito"
+        tools:layout="@layout/fragment_carrito" >
+        <action
+            android:id="@+id/action_carritoFragment_to_formaPagoFragment"
+            app:destination="@id/formaPagoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formaPagoFragment"
+        android:name="com.bedu.sportstore.ui.main.formapago.FormaPagoFragment"
+        android:label="fragment_forma_pago"
+        tools:layout="@layout/fragment_forma_pago" >
+        <action
+            android:id="@+id/action_formaPagoFragment_to_carritoFragment"
+            app:destination="@id/carritoFragment" />
+        <action
+            android:id="@+id/action_formaPagoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.bedu.sportstore.ui.main.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_productosCategoriaFragment"
+            app:destination="@id/productosCategoriaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productosCategoriaFragment"
+        android:name="com.bedu.sportstore.ui.main.productos_categoria.ProductosCategoriaFragment"
+        android:label="fragment_productos_categoria"
+        tools:layout="@layout/fragment_productos_categoria" >
+        <action
+            android:id="@+id/action_productosCategoriaFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+        <argument
+            android:name="idCategoria"
+            app:argType="integer" />
+        <argument
+            android:name="nombreCategoria"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productosCategoriaFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.bedu.sportstore.ui.main.productdetail.ProductDetailFragment"
+        android:label="ProductDetailFragment" >
+        <action
+            android:id="@+id/action_productDetailFragment_to_formaPagoFragment"
+            app:destination="@id/formaPagoFragment" />
+        <argument
+            android:name="idProducto"
+            app:argType="integer" />
+        <argument
+            android:name="idCategoria"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_productosCategoriaFragment"
+            app:destination="@id/productosCategoriaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.bedu.sportstore.ui.main.perfil.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/historialComprasFragment"
+        android:name="com.bedu.sportstore.ui.main.historial_compra.HistorialComprasFragment"
+        android:label="fragment_historial_compras"
+        tools:layout="@layout/fragment_historial_compras" />
+</navigation>

@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:background="@color/dark_primary"
             android:padding="16dp"
-            android:text="DATOS DE USUARIO"
+            android:text="@string/datos_de_usuario"
             android:textColor="@color/dark_light"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -175,7 +175,9 @@
         android:id="@+id/btnPerfilCerrarSession"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cerrar Session"
+        android:text="@string/cerrar_sesion"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

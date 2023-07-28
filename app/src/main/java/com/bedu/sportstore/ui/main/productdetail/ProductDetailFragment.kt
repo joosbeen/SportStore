@@ -2,37 +2,41 @@ package com.bedu.sportstore.ui.main.productdetail
 
 import android.content.Intent
 import android.os.Build
-import com.bedu.sportstore.ui.fragments.main.FormaPagoFragment
-import java.util.Date
 
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bedu.sportstore.R
 import com.bedu.sportstore.core.broadcast.CartCounterReceiver
 import com.bedu.sportstore.databinding.FragmentDetailProductBinding
-import com.bedu.sportstore.db.CarritoProducto
-import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.Categoria
-import com.bedu.sportstore.model.Producto
-import com.bedu.sportstore.ui.main.productdetail.adapter.ProductDetailAdapter
-import com.bedu.sportstore.ui.main.productos_categoria.ProductosCategoriaFragment
-import com.bedu.sportstore.utileria.UserSession
-import com.bedu.sportstore.utileria.UtilFragment
+import com.bedu.sportstore.model.response.ProductoResponse
+import com.bedu.sportstore.model.response.toProductoEntity
+import com.bedu.sportstore.repository.local.AppDatabaseRoom
+import com.bedu.sportstore.repository.remote.SportStoreHttp
+import com.bedu.sportstore.utileria.Utility
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.Locale
 
-class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
-    ProductDetailAdapter.OnProductoClickListener {
+class ProductDetailFragment : Fragment(R.layout.fragment_detail_product) {
 
     private var categoria: Categoria = Categoria()
-    //private var producto: Producto? = null
-    private lateinit var binding : FragmentDetailProductBinding
-    private var nuevoElementoCarrito:CarritoProducto? = null
+    private var producto: ProductoResponse? = null
+    private lateinit var binding: FragmentDetailProductBinding
     private var idcategoria: Int = 0
     private var idproducto: Int = 0
+    private val productoHttp by lazy { SportStoreHttp.productoHttp() }
+    private val carritoDao by lazy { AppDatabaseRoom.getDatabase(requireContext()).carritoDao() }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,75 +52,86 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailProductBinding.bind(view)
 
-        categoria = DataBase.categorias.find { it.id == idcategoria }!!
-        val productoSeleccionado = DataBase.productos.find { it.id == idproducto }
-        binding.toolBarFragment.title = productoSeleccionado?.nombre
-        binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
-        binding.toolBarFragment.setNavigationOnClickListener {
+        cargarInfoProducto()
+        onClickListener()
+        binding.toolBarFragment.title = "Detalle del producto"
+        binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back)
 
-            if (it.id == -1) UtilFragment().replaceFragmetnMain(
-                requireActivity().supportFragmentManager,
-                ProductosCategoriaFragment.newInstance(categoria)
-            )
-        }
-
-        //ToolbarBasic().show((activity as AppCompatActivity?)!!, "Detalle Producto", false)
-        Glide.with(view.context).load(productoSeleccionado?.imagen).into(binding.imgProducto);
-        binding.nombreProducto.text = productoSeleccionado?.nombre
-        binding.descripcionProducto.text = productoSeleccionado?.descripcion
-        binding.precioProducto.text ="$ ${productoSeleccionado?.precio.toString()}"
-        binding.descripcionLargaProducto.text = productoSeleccionado?.descripcionLarga
-        binding.buttonFinalizarCompra.setOnClickListener{finalizarCompra()}
-        binding.buttonAnadirCarrito.setOnClickListener{annadirCarrito(productoSeleccionado)}
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
+    private fun cargarInfoProducto() {
+        productoHttp.getFindId(idproducto).enqueue(
+            object : Callback<ProductoResponse> {
+                override fun onResponse(
+                    call: Call<ProductoResponse>,
+                    response: Response<ProductoResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            producto = it
+                            Glide.with(requireView().context).load(it.imagen)
+                                .into(binding.imgProducto);
+                            binding.nombreProducto.text = it.nombre.capitalize()
+                            binding.descripcionProducto.text = it.descripcion.capitalize()
+                            binding.precioProducto.text = "$ ${it.precio.toString()}"
+                            binding.descripcionLargaProducto.text = it.descripcion_larga
+                        }
+                    }
+                }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(producto: Int, categoria: Int) =
-            ProductDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putInt("idProducto", producto)
-                    putInt("idCategoria", categoria)
+                override fun onFailure(call: Call<ProductoResponse>, t: Throwable) {
+                    Utility.displaySnackBar(
+                        requireView(),
+                        getString(R.string.msg_error_cargar_product),
+                        requireContext(),
+                        R.color.red
+                    )
                 }
             }
-
+        )
     }
 
-    private fun annadirCarrito(producto: Producto?){
-        DataBase.carrito.add(
-            CarritoProducto(
-                Date().time,
-                producto?.id ?: 0,
-                UserSession.user?.id ?: 0
-            )
-        )
-        view?.let {
-            Snackbar.make(
-                it,
-                "Se agrego al carrito", Snackbar.LENGTH_SHORT
-            ).show()
+    private fun onClickListener() {
+        binding.toolBarFragment.setNavigationOnClickListener {
+            if (it.id == -1) {
+                val action =
+                    ProductDetailFragmentDirections.actionProductDetailFragmentToProductosCategoriaFragment(
+                        idcategoria,
+                        categoria.nombre
+                    )
+                findNavController().navigate(action)
+            }
         }
+        binding.buttonFinalizarCompra.setOnClickListener { finalizarCompra() }
+        binding.buttonAnadirCarrito.setOnClickListener {
+            producto?.let {
+                annadirCarrito(it)
+            }
+        }
+    }
 
+    private fun annadirCarrito(producto: ProductoResponse) {
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                carritoDao.insert(producto.toProductoEntity())
+                view?.let {
+                    Snackbar.make(
+                        it,
+                        "Se agrego al carrito", Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
         // #### AppComponent
         // #### Envía un broadcast para notificar al BroadcastReceiver
         // ####
         val intent = Intent(requireContext(), CartCounterReceiver::class.java)
         context?.sendBroadcast(intent)
     }
-    private fun finalizarCompra(){
-        requireActivity().supportFragmentManager.commit {
-            replace(R.id.frame_Layout, FormaPagoFragment())
-            addToBackStack("formaPagoFragment")
-        }
-    }
 
-    override fun onProductoClick(producto: Producto) {
-        annadirCarrito(producto)
-    }
+    private fun finalizarCompra() =
+        findNavController().navigate(R.id.action_productDetailFragment_to_formaPagoFragment)
 
 }
 

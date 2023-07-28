@@ -47,4 +47,31 @@
     <string name="latitud">Latitud</string>
     <string name="longitud">Longitud</string>
     <string name="default_notification_channel_id"  translatable="false">default_notification_channel_id</string>
+    <string name="google">google</string>
+    <string name="id_cliente_web">744462903672-918e5dbtfkvthsgbpn1phe3rqbcdnth9.apps.googleusercontent.com</string>
+    <string name="anadir_al_carrito">Añadir al carrito</string>
+    <string name="finalizar_compra">Finalizar compra</string>
+    <string name="msg_error_cargar_categoria">Ocurrió un error al cargar la categoria.</string>
+    <string name="msg_error_cargar_producto">Ocurrió un error al cargar los productos.</string>
+    <string name="msg_error_cargar_product">Ocurrió un error al cargar el producto.</string>
+    <string name="datos_de_usuario">DATOS DE USUARIO</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="total">TOTAL</string>
+    <string name="subtotal">SUBTOTAL</string>
+    <string name="sin_compras">Sin Compras</string>
+    <string name="realice_su_primera_compra">Realice su primera compra</string>
+    <string name="example_email">example@gmail.com</string>
+    <string name="no_tiene_cuenta">¿No tiene una cuenta? Regístrese</string>
+    <string name="tenis_nike_air_max">TENIS NIKE AIR MAX</string>
+    <string name="para_hombre_original">Para hombre  Original</string>
+    <string name="talla_veinticinco">Talla: 25 cm</string>
+    <string name="dos_mil_trescientos_noventa_y_nueve">$2,399.00 MXM</string>
+    <string name="tenis">Tenis</string>
+    <string name="entregado">Entregado</string>
+    <string name="doce_doce">12/12/12</string>
+    <string name="doscientos_veinte">$ 220 MXN</string>
+    <string name="folio_cero_cero_uno">0000000001</string>
+    <string name="clasicos_tenis_descripcion">Clásicos tenis de correr, con un diseño de corte bajo. Más que un calzado, es una declaración de estilo. Los Nike Air
+            Max llegaron a la escena en el 87 y ganarón seguidores en el mundo.</string>
+    <string name="envio">Envio</string>
 </resources>

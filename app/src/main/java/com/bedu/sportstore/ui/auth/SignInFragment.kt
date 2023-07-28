@@ -2,7 +2,6 @@ package com.bedu.sportstore.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -13,35 +12,36 @@ import com.bedu.sportstore.databinding.FragmentSignInBinding
 import com.bedu.sportstore.db.Usuario
 import com.bedu.sportstore.model.entity.PerfilEntity
 import com.bedu.sportstore.model.request.SigninVO
-import com.bedu.sportstore.repository.remote.SportStoreHttp
-import com.bedu.sportstore.model.response.AuthResponse
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
 import com.bedu.sportstore.ui.MainActivity
-import com.bedu.sportstore.ui.SportApplication
 import com.bedu.sportstore.utileria.Form
-import com.bedu.sportstore.utileria.TAGS
 import com.bedu.sportstore.utileria.UserSession
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
     private lateinit var bdg: FragmentSignInBinding
-    //private val perfilDao by lazy { (requireActivity().application as SportApplication).perfilDao }
-    //private val databaseRoom = AppDatabaseRoom.getDatabase(requireActivity())
-    //private val perfilDao = databaseRoom.perfilDao()
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bdg = FragmentSignInBinding.bind(view)
 
+        auth = Firebase.auth
+        db = Firebase.firestore
+
         bdg.edtSigninEmail.setText("carlos@gmail.com")
-        bdg.edtSigninContrasena.setText("Carlos12")
+        bdg.edtSigninContrasena.setText("qwerty")
 
         bdg.btnSigninSubmit.setOnClickListener { onClickSigninSubmit() }
         bdg.txtSigninRegistrarse.setOnClickListener { onClickSigninRegister() }
@@ -84,52 +84,73 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         }
 
         val login = SigninVO(correo, contrasena)
-        val auth = SportStoreHttp.authHttp()
-        val call = auth.signin(login)
+        //val auth = SportStoreHttp.authHttp()
+        //val call = auth.signin(login)
 
-
-
-        call.enqueue(object : Callback<AuthResponse> {
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-
-                if (response.isSuccessful) {
-                     val databaseRoom = AppDatabaseRoom.getDatabase(requireActivity())
-                     val perfilDao = databaseRoom.perfilDao()
-                    response.body()?.usuario?.let {
-                        lifecycleScope.launch {
-                            withContext(Dispatchers.IO) {
-                                perfilDao.insert(
-                                    PerfilEntity(it.id, it.nombre, it.correo, it.rol, "")
-                                )
-                            }
-                        }
-
-                        UserSession.user = Usuario(it.id, it.nombre, it.correo, "", it.rol)
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        intent.putExtra("usuario", response.body()?.usuario.toString())
-                        startActivity(intent)
-                        activity?.finish()
+        auth.signInWithEmailAndPassword(correo, password)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    user?.let {
+                        createSession(user.uid, "", correo)
+                        searchUserbuUid(user.uid)
                     }
-
-
                 } else {
-                    showSnackbar(getString(R.string.msg_error_login_invalid))
-                    Log.e(TAGS.ERROR, "onResponse: ${getString(R.string.msg_error_login_invalid)}")
+                    task.exception?.let { e ->
+                        e.message?.let { showSnackbar(it) }
+                    }
                 }
-
             }
 
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                showSnackbar(getString(R.string.msg_error_server))
-                Log.e(TAGS.ERROR, "onResponse: ${getString(R.string.msg_error_server)}")
-            }
-        })
+    }
 
+    private fun searchUserbuUid(uid: String) {
+
+        val collectionName = "usuarios"
+        val fieldName = "userUid"
+        val fieldValue = uid
+
+        val query: Query = db.collection(collectionName).whereEqualTo(fieldName, fieldValue)
+
+        query.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                for (document in task.result) {
+                    val data = document.data
+                }
+            } else {
+                val exception = task.exception
+            }
+        }
+
+    }
+
+    private fun createSession(uid: String, nombre: String, email: String) {
+
+        val databaseRoom = AppDatabaseRoom.getDatabase(requireActivity())
+        val perfilDao = databaseRoom.perfilDao()
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                perfilDao.insert(
+                    PerfilEntity(uid.length.toLong(), nombre, email, "cliente", "")
+                )
+            }
+        }
+        //val documentId = documentReference.id
+        UserSession.user = Usuario(uid.length.toLong(), nombre, email, "", "cliente")
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        intent.putExtra("usuario", UserSession.user.toString())
+        startActivity(intent)
+        activity?.finish()
     }
 
     private fun showSnackbar(msg: String): Unit {
         val snack = Snackbar.make(requireView(), msg, Snackbar.LENGTH_LONG)
         snack.show()
+    }
+
+    companion object {
+        const val TAG = "sportsignin"
     }
 
 }
