@@ -23,17 +23,17 @@
             android:id="@+id/txtPerfilTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DATOS DE USUARIO"
             android:background="@color/dark_primary"
-            android:textColor="@color/dark_light"
-            android:textSize="25sp"
             android:padding="16dp"
+            android:text="DATOS DE USUARIO"
+            android:textColor="@color/dark_light"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imgPerfilUsario"
             android:layout_width="200dp"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
             android:src="@drawable/icon_user" />
 
     </LinearLayout>
@@ -49,6 +49,16 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardPerfilImagen" />
+
+    <ImageView
+        android:id="@+id/imgLocationUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/baseline_location_on_24"
+        app:layout_constraintBottom_toTopOf="@+id/xxx"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardPerfilImagen" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -118,5 +128,56 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtPerfilLatitud"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/latitud"
+        style="@style/lbl_input"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xxx" />
+
+    <TextView
+        android:id="@+id/txtPerfilLatitudOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="0.000000"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtPerfilLatitud"
+        app:layout_constraintStart_toEndOf="@+id/txtPerfilLatitud"
+        app:layout_constraintTop_toTopOf="@+id/txtPerfilLatitud" />
+
+    <TextView
+        android:id="@+id/txtPerfilLongitud"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/longitud"
+        style="@style/lbl_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPerfilLatitud" />
+
+    <TextView
+        android:id="@+id/txtPerfilLongitudOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="0.000000"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtPerfilLongitud"
+        app:layout_constraintStart_toEndOf="@+id/txtPerfilLongitud"
+        app:layout_constraintTop_toBottomOf="@+id/txtPerfilLatitud" />
+
+    <Button
+        android:id="@+id/btnPerfilCerrarSession"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Session"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

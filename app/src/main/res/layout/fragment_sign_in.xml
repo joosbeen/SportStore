@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/logo_sport_store"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="14dp"/>
 
     <TextView
         style="@style/lbl_input"

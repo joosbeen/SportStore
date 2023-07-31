@@ -1,7 +1,6 @@
 package com.bedu.sportstore.ui.main.productos_categoria
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.commit
@@ -20,14 +19,14 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
     ProductoCategoriaAdapter.OnProductoClickListener {
 
     private lateinit var binding: FragmentProductosCategoriaBinding
-    private var idCategoria: String? = null
+    private var idCategoria: Int? = null
     private var nombreCategoria: String? = null
     private var categoria = Categoria()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            idCategoria = it.getString("idCategoria")
+            idCategoria = it.getInt("idCategoria")
             nombreCategoria = it.getString("nombreCategoria")
         }
     }
@@ -36,8 +35,9 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProductosCategoriaBinding.bind(view)
 
-        categoria = DataBase.categorias.find { it.id == idCategoria?.toInt() } ?: Categoria()
-        binding.toolBarFragment.title = categoria?.nombre?.uppercase()
+        categoria = DataBase.categorias.find { it.id == idCategoria } ?: Categoria()
+        binding.toolBarFragment.title =
+            nombreCategoria?.uppercase() //categoria?.nombre?.uppercase()
         binding.toolBarFragment.setNavigationIcon(R.drawable.ic_arrow_back) // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
         binding.toolBarFragment.setNavigationOnClickListener {
 
@@ -47,7 +47,7 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
             )
         }
 
-        val productos = DataBase.productos.filter { it.categoriaId == idCategoria?.toInt() }
+        val productos = DataBase.productos.filter { it.categoriaId == idCategoria }
 
         binding.rvProductosCategoria.setHasFixedSize(true)
         binding.rvProductosCategoria.layoutManager = LinearLayoutManager(view.context)
@@ -57,10 +57,12 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
     }
 
     override fun onProductoClick(producto: Producto) {
-        Log.i("Detail", producto.toString())
         val detailFragment = ProductDetailFragment()
         parentFragmentManager.commit {
-            replace(R.id.frame_Layout, ProductDetailFragment.newInstance(producto, categoria ))
+            replace(
+                R.id.frame_Layout,
+                ProductDetailFragment.newInstance(producto.id, idCategoria ?: 0)
+            )
         }
 
     }
@@ -70,7 +72,7 @@ class ProductosCategoriaFragment : Fragment(R.layout.fragment_productos_categori
         fun newInstance(categoria: Categoria) =
             ProductosCategoriaFragment().apply {
                 arguments = Bundle().apply {
-                    putString("idCategoria", categoria.id.toString())
+                    putInt("idCategoria", categoria.id)
                     putString("nombreCategoria", categoria.nombre)
                 }
             }

@@ -36,4 +36,9 @@
     <string name="compra_exitosa">Compra exitosa!</string>
     <string name="title_carrito_de_compra">CARRITO DE COMPRA</string>
     <string name="title_detalles_del_pago">DETALLES DEL PAGO</string>
+    <string name="msg_error_login_invalid">Correo/Contraseña invalido!</string>
+    <string name="msg_error_server">Ocurrio un error inesperado, intente mas tarde.</string>
+    <string name="latitud">Latitud</string>
+    <string name="longitud">Longitud</string>
+    <string name="default_notification_channel_id" translatable="false">default_notification_channel_id</string>
 </resources>

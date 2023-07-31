@@ -17,7 +17,7 @@ object DataBase {
     // Lista de categorias
     var categorias = mutableListOf<Categoria>(
         Categoria(1, "Calzado", "", R.drawable.tenis),
-        Categoria(1, "Ropa", "", R.drawable.ropa)
+        Categoria(2, "Ropa", "", R.drawable.ropa)
     )
 
     // Lista de Compras

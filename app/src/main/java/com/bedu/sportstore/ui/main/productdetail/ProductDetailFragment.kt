@@ -1,26 +1,24 @@
 package com.bedu.sportstore.ui.main.productdetail
 
+import android.content.Intent
 import android.os.Build
 import com.bedu.sportstore.ui.fragments.main.FormaPagoFragment
 import java.util.Date
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.bedu.sportstore.R
+import com.bedu.sportstore.core.broadcast.CartCounterReceiver
 import com.bedu.sportstore.databinding.FragmentDetailProductBinding
 import com.bedu.sportstore.db.CarritoProducto
 import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.Categoria
 import com.bedu.sportstore.model.Producto
-import com.bedu.sportstore.ui.main.home.HomeFragment
 import com.bedu.sportstore.ui.main.productdetail.adapter.ProductDetailAdapter
 import com.bedu.sportstore.ui.main.productos_categoria.ProductosCategoriaFragment
-import com.bedu.sportstore.ui.toolbar.ToolbarBasic
 import com.bedu.sportstore.utileria.UserSession
 import com.bedu.sportstore.utileria.UtilFragment
 import com.bumptech.glide.Glide
@@ -41,10 +39,9 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            idcategoria = it.getInt("idProducto")
-            idproducto = it.getInt("idCategoria")
+            idproducto = it.getInt("idProducto")
+            idcategoria = it.getInt("idCategoria")
         }
-        Log.i("Detalles","arguments" + arguments)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,13 +76,11 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
 
     companion object {
         @JvmStatic
-        fun newInstance(producto: Producto, categoria: Categoria) =
+        fun newInstance(producto: Int, categoria: Int) =
             ProductDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable("producto", producto)
-                    putParcelable("categoria", categoria)
-                    putInt("idProducto", producto.id)
-                    putInt("idCategoria", categoria.id)
+                    putInt("idProducto", producto)
+                    putInt("idCategoria", categoria)
                 }
             }
 
@@ -105,6 +100,12 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
                 "Se agrego al carrito", Snackbar.LENGTH_SHORT
             ).show()
         }
+
+        // #### AppComponent
+        // #### Envía un broadcast para notificar al BroadcastReceiver
+        // ####
+        val intent = Intent(requireContext(), CartCounterReceiver::class.java)
+        context?.sendBroadcast(intent)
     }
     private fun finalizarCompra(){
         requireActivity().supportFragmentManager.commit {
@@ -114,7 +115,6 @@ class ProductDetailFragment : Fragment(R.layout.fragment_detail_product),
     }
 
     override fun onProductoClick(producto: Producto) {
-        TODO("Not yet implemented")
         annadirCarrito(producto)
     }
 
