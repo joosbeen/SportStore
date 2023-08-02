@@ -8,7 +8,7 @@ import android.os.Looper
 import android.view.WindowManager
 import androidx.lifecycle.lifecycleScope
 import com.bedu.sportstore.R
-import com.bedu.sportstore.db.Usuario
+import com.bedu.sportstore.model.Usuario
 import com.bedu.sportstore.model.entity.PerfilEntity
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
 import com.bedu.sportstore.utileria.UserSession

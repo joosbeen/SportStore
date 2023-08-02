@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bedu.sportstore.R
-import com.bedu.sportstore.db.Compra
 import com.bedu.sportstore.repository.remote.firebase.CompraCollection
 import com.bedu.sportstore.utileria.Utility
 import java.util.Date

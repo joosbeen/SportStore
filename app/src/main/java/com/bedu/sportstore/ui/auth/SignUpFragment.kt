@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentSignUpBinding
-import com.bedu.sportstore.db.Usuario
+import com.bedu.sportstore.model.Usuario
 import com.bedu.sportstore.model.collections.User
 import com.bedu.sportstore.model.entity.PerfilEntity
 import com.bedu.sportstore.repository.local.AppDatabaseRoom

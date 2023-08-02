@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentSignInBinding
-import com.bedu.sportstore.db.Usuario
+import com.bedu.sportstore.model.Usuario
 import com.bedu.sportstore.model.entity.PerfilEntity
 import com.bedu.sportstore.model.request.SigninVO
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
