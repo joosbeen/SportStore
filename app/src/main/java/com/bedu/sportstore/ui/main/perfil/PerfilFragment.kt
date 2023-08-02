@@ -19,12 +19,13 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.lifecycleScope
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentPerfilBinding
-import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.entity.PerfilEntity
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
+import com.bedu.sportstore.repository.remote.firebase.CompraReference
 import com.bedu.sportstore.ui.AuthActivity
 import com.bedu.sportstore.utileria.ImageFormat
 import com.bedu.sportstore.utileria.PermissionsManager
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -34,6 +35,7 @@ class PerfilFragment : Fragment(R.layout.fragment_perfil), PopupMenu.OnMenuItemC
     private lateinit var bdg: FragmentPerfilBinding
     private val permissionsManager = PermissionsManager()
     private var usuarios = listOf<PerfilEntity>()
+    private val fbTblHistorialCompras = CompraReference()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,10 +45,24 @@ class PerfilFragment : Fragment(R.layout.fragment_perfil), PopupMenu.OnMenuItemC
 
         bdg.txtPerfilLatitudOut.text = "0.0000"
         bdg.txtPerfilLongitudOut.text = "0.0000"
+        bdg.txtPerfiloutCompras.text = "0"
+
 
         bdg.imgLocationUser.setOnClickListener { getLocation() }
         bdg.imgPerfilUsario.setOnClickListener { openPopupMenu(it) }
         bdg.btnPerfilCerrarSession.setOnClickListener { cerrarSesion() }
+    }
+
+    private fun loadCompras() {
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            fbTblHistorialCompras.findByUser(user.uid) { documents ->
+                if (documents.isSuccessful) {
+                    documents.compras?.let {
+                        bdg.txtPerfiloutCompras.text = "${it.size}"
+                    }
+                }
+            }
+        }
     }
 
     private fun cerrarSesion() {
@@ -72,8 +88,6 @@ class PerfilFragment : Fragment(R.layout.fragment_perfil), PopupMenu.OnMenuItemC
             }
             bdg.txtPerfiloutNombre.text = usuarios[0].nombre
             bdg.txtPerfiloutEmail.text = usuarios[0].correo
-            bdg.txtPerfiloutCompras.text =
-                DataBase.compras.filter { it.usuarioId == usuarios[0].uid }.size.toString()
         }
     }
 

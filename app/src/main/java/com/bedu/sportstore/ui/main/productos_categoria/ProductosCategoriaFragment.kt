@@ -7,7 +7,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedu.sportstore.R
 import com.bedu.sportstore.databinding.FragmentProductosCategoriaBinding
-import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.model.Categoria
 import com.bedu.sportstore.model.response.ProductoResponse
 import com.bedu.sportstore.repository.remote.SportStoreHttp

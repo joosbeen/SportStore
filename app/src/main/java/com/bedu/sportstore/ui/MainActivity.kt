@@ -14,13 +14,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.bedu.sportstore.R
 import com.bedu.sportstore.core.notification.NotificationApp
 import com.bedu.sportstore.databinding.ActivityMainBinding
-import com.bedu.sportstore.db.DataBase
 import com.bedu.sportstore.repository.local.AppDatabaseRoom
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.ktx.Firebase
-import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
