@@ -22,7 +22,6 @@ import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var navController: NavController
