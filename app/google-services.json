@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "744462903672",
+    "project_id": "bedupracticas-bdfc3",
+    "storage_bucket": "bedupracticas-bdfc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744462903672:android:ae2aa3f31ce6171da1c08d",
+        "android_client_info": {
+          "package_name": "com.bedu.auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744462903672-ivqe4bs9kcgsefdmis2uidiuhj37qfml.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bedu.auth",
+            "certificate_hash": "61eee798167d7c26d8939cf84e38e2fd0f639cad"
+          }
+        },
+        {
+          "client_id": "744462903672-hut7ab392v05egqert2balt11cckc8se.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZbk9gh25Lp7Z1Cp0NnQXKkjgTG4C4Eyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744462903672-hut7ab392v05egqert2balt11cckc8se.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744462903672:android:72ba75f86748a284a1c08d",
+        "android_client_info": {
+          "package_name": "com.bedu.sportstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744462903672-hut7ab392v05egqert2balt11cckc8se.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZbk9gh25Lp7Z1Cp0NnQXKkjgTG4C4Eyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744462903672-hut7ab392v05egqert2balt11cckc8se.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744462903672:android:824808309dd30d51a1c08d",
+        "android_client_info": {
+          "package_name": "com.benny.s06firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744462903672-hut7ab392v05egqert2balt11cckc8se.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZbk9gh25Lp7Z1Cp0NnQXKkjgTG4C4Eyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744462903672-hut7ab392v05egqert2balt11cckc8se.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
